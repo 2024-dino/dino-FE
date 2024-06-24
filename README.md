@@ -1,1 +1,2 @@
-# dino-FE
+# D!NO - FE
+- project intro
