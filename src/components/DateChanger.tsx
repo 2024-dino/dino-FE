@@ -1,64 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion, PanInfo, useMotionValue } from 'framer-motion';
-const dateArr = [
-  {
-    weekday: '일',
-    day: 14,
-    event: true,
-  },
-  {
-    weekday: '월',
-    day: 15,
-    event: true,
-  },
-  {
-    weekday: '화',
-    day: 16,
-    event: true,
-  },
-  {
-    weekday: '수',
-    day: 17,
-    event: true,
-  },
-  {
-    weekday: '목',
-    day: 18,
-    event: true,
-  },
-  {
-    weekday: '금',
-    day: 19,
-    event: true,
-  },
-  {
-    weekday: '토',
-    day: 20,
-    event: true,
-  },
-  {
-    weekday: '일',
-    day: 21,
-    event: true,
-  },
-  {
-    weekday: '월',
-    day: 22,
-    event: true,
-  },
-  {
-    weekday: '화',
-    day: 23,
-    event: true,
-  },
-  {
-    weekday: '수',
-    day: 24,
-    event: true,
-  },
-];
 
 const DRAG_BUFFER = 10; // 페이지 이동을 유발하는 드래그 길이
 
@@ -70,13 +13,40 @@ const SPRING_OPTIONS = {
   damping: 50,
 };
 
-export default function DateChanger() {
-  const today = new Date().getDay();
-  const [currentDay, setCurrentDay] = useState(today);
+function getDayDiff(date1: Date, date2: Date) {
+  const oneDay = 24 * 60 * 60 * 1000; // 밀리초 단위의 하루
+  const timeDiff = date2.getTime() - date1.getTime();
+  return Math.round(timeDiff / oneDay);
+}
 
+function getDateRange(today: Date) {
+  const oneDay = 24 * 60 * 60 * 1000; // 밀리초 단위의 하ß루
+  const dateRange = [];
+  // Intl.DateTimeFormat을 사용하여 요일 포맷터 생성
+  const weekdayFormatter = new Intl.DateTimeFormat('en', { weekday: 'short' });
+
+  // 현재 날짜로부터 1주일 전부터 1주일 후까지의 날짜를 계산
+  for (let i = -7; i <= 7; i++) {
+    const date = new Date(today.getTime() + i * oneDay);
+
+    dateRange.push({
+      date: date,
+      day: date.getDate(), // 1~31 사이의 일
+      dayOfWeek: weekdayFormatter.format(date), // 요일 (월, 화, 수, ...)
+      isToday: i === 0, // 오늘 날짜 여부
+    });
+  }
+  console.log(dateRange);
+  return dateRange;
+}
+
+export default function DateChanger() {
+  const today = new Date();
+  const [currentDay, setCurrentDay] = useState(today);
+  const dateArr = useMemo(() => getDateRange(currentDay), [currentDay]);
   const [dragStartX, setDragStartX] = useState(0);
   const [page, setPage] = useState(0);
-  const [width, setWidth] = useState<number>(50);
+  const [width, setWidth] = useState<number>(0);
   const dragX = useMotionValue(0);
   const onDragStart = (
     event: MouseEvent | TouchEvent | PointerEvent,
@@ -84,6 +54,8 @@ export default function DateChanger() {
   ): void => {
     setDragStartX(info.point.x);
   };
+
+  console.log(currentDay.getDate());
 
   const onDrag = (
     event: MouseEvent | TouchEvent | PointerEvent,
@@ -97,16 +69,24 @@ export default function DateChanger() {
   const onDragEnd = () => {
     const x = dragX.get();
 
-    x <= -DRAG_BUFFER &&
-      page < dateArr.length - 1 &&
+    if (x <= -DRAG_BUFFER && page < dateArr.length - 1) {
+      const tomorrow = new Date(currentDay);
+      tomorrow.setDate(currentDay.getDate() + 1);
+      setCurrentDay(tomorrow);
       setPage((page) => page + 1);
-    x >= 10 && page > 0 && setPage((page) => page - 1);
-    
-    console.log(page)
+      console.log('increase');
+    }
+    if (x >= 10) {
+      const yesterday = new Date(currentDay);
+      yesterday.setDate(currentDay.getDate() - 1);
+      setCurrentDay(yesterday);
+      setPage((page) => page - 1);
+      console.log('decrease');
+    }
   };
   return (
-    <div className=" w-[350px] overflow-hidden border border-white">
-      <div className="flex w-[550px] bg-black overflow-hidden">
+    <div className=" w-[400px] overflow-hidden border border-white">
+      <div className="flex items-center justify-center overflow-hidden">
         <motion.div
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -118,16 +98,37 @@ export default function DateChanger() {
           transition={SPRING_OPTIONS}
           onDragEnd={onDragEnd}
           dragElastic={0.2}
-          className="flex items-center justify-start overflow-hidden mb-5"
+          className="flex gap-x-8 items-center justify-center mb-5"
         >
           {dateArr.map((day) => (
-            <motion.div className="w-[50px]" transition={SPRING_OPTIONS}>
-              <div>{day.weekday}</div>
-              <div>{day.day}</div>
-              <div className="flex items-center justify-center h-7">
-                {day.event && (
-                  <div className="w-[5px] h-[5px] rounded-full bg-white" />
-                )}
+            <motion.div
+              className={`flex flex-col m-2 items-center justify-center w-[46px] min-w-11 h-[46px] bg-white ${
+                currentDay.getDate() === day.day
+                  ? 'rounded-full drop-shadow-md'
+                  : ''
+              }`}
+              transition={SPRING_OPTIONS}
+            >
+              <div
+                className={`text-[8px] font-normal
+                  ${getDayDiff(today, day.date) > 0 ? 'text-black' : ''}
+                  ${getDayDiff(today, day.date) < 0 ? 'text-[#DDDDDD]' : ''}
+                  `}
+              >
+                {day.dayOfWeek}
+              </div>
+              <div
+                className={`text-base
+                  ${getDayDiff(today, day.date) > 0 ? 'font-normal' : ''}
+                  ${
+                    getDayDiff(today, day.date) < 0
+                      ? 'text-[#DDDDDD] font-normal'
+                      : ''
+                  }
+                  ${getDayDiff(today, day.date) == 0 ? 'font-bold' : ''}
+                  `}
+              >
+                {day.day}
               </div>
             </motion.div>
           ))}
@@ -136,3 +137,7 @@ export default function DateChanger() {
     </div>
   );
 }
+
+const days = {
+  current: 'rounded-full drop-shadow-md',
+};
