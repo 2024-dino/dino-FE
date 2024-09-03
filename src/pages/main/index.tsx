@@ -1,10 +1,11 @@
+import NavBar from '@/components/common/NavBar';
 import DateChanger from '@/components/DateChanger';
 import EventElement from '@/components/eventManage/EventElement';
 import TimePicker from '@/components/TimePicker';
 
 interface Props {}
 
-export default function NextPage<Props>({}) {
+export default function MainPage<Props>({}) {
 
   const handleTimeChange = () => {
     return;
@@ -17,6 +18,7 @@ export default function NextPage<Props>({}) {
         <EventElement />
         <DateChanger />
         <TimePicker onChange={handleTimeChange} />
+        <NavBar />
       </div>
     </>
   );
