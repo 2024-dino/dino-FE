@@ -24,19 +24,19 @@ const QuestionModal = ({ isOpen, setIsOpen }: QuestionModalProps) => {
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="bg-white p-6 max-w-[390px] rounded-[10px] shadow-lg mb-4">
-            <h2 className="text-lg font-bold">Q.</h2>
+          <div className="flex flew-row gap-1 bg-white px-3 py-4 w-[calc(100vw-40px)] rounded-[10px] shadow-lg mb-4">
+            <h2 className="text-[24px] leading-6 font-bold text-[#EEEEEE] flex justify-start">Q.</h2>
             <p>
-              ( )하고 싶은 것을 이룬다면, 가장 먼저 알리고 싶은 사람은
+              ( ) 하고 싶은 것을 이룬다면, 가장 먼저 알리고 싶은 사람은
               누구인가요?
             </p>
           </div>
-          <div className='bg-white p-6 max-w-[390px] rounded-[10px] shadow-lg'>
-            <h2 className="text-lg font-bold">A.</h2>
+          <div className='flex items-center bg-white px-3 py-4 w-[calc(100vw-40px)] rounded-[10px] shadow-lg'>
+            <h2 className="text-[24px] font-bold text-[#EEEEEE]">A.</h2>
             <input
               type="text"
-              className="border rounded p-2 w-full"
-              placeholder="답변을 입력하세요"
+              className="rounded p-2 w-full outline-none"
+              placeholder="답변을 작성하기"
             />
           </div>
         </div>
