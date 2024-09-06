@@ -16,7 +16,9 @@
     "react": "^18",
     "react-calendar": "^5.0.0",
     "react-dom": "^18",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "react-wavesurfer": "^0.8.6",
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "wavesurfer.js": "^7.8.4"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

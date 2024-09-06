@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Header from '../../components/main/Header';
 import EventList from '@/components/main/EventList';
 import QuestionModal from '@/components/main/QuestionModal';
+import Waveform from '@/components/main/Waveform';
 
 interface Props {}
 
@@ -22,6 +23,7 @@ export default function MainPage<Props>({}) {
       <div
         className={`flex flex-col text-center w-full h-screen items-center justify-center relative`}
       >
+        <Waveform />
         <Header onClick={() => setIsSideMenuOpen(true)} />
         <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
         <EventElement />
