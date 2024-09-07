@@ -3,6 +3,7 @@ import WaveSurfer from 'wavesurfer.js';
 
 const Waveform: React.FC = () => {
   const [playing, setPlaying] = useState<boolean>(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
   const wavesurfer = useRef<WaveSurfer | null>(null);
   const url = 'https://www.mfiles.co.uk/mp3-downloads/gs-cd-track2.mp3';
@@ -27,10 +28,12 @@ const Waveform: React.FC = () => {
   const handlePlay = (): void => {
     if (wavesurfer.current) {
       wavesurfer.current.playPause();
+      audioRef?.current?.play();
     }
     if (playing && wavesurfer.current !== null) {
       wavesurfer.current.destroy();
       wavesurfer.current = null;
+      audioRef?.current?.pause();
     }
     setPlaying(!playing);
   };
@@ -51,7 +54,7 @@ const Waveform: React.FC = () => {
         {!playing ? 'Play' : 'Pause'}
       </button>
       <div id="waveform" className="w-full h-[90px]" ref={waveformRef} />
-      <audio id="track" src={url} />
+      <audio id="track" src={url} ref={audioRef} />
     </div>
   );
 };
