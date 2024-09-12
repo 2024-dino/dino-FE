@@ -1,14 +1,34 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import WaveSurfer from 'wavesurfer.js';
+import PlayButtonIcon from '@/assets/icon/PlayButtonIcon.svg';
 
-const Waveform: React.FC = () => {
+interface WaveformProps {
+  url: string;
+}
+
+export const formatTime = (seconds: number): string => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+};
+
+const Waveform = ({ url }: WaveformProps) => {
   const [playing, setPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const waveformRef = useRef<HTMLDivElement>(null);
   const wavesurfer = useRef<WaveSurfer | null>(null);
-  const url = 'https://www.mfiles.co.uk/mp3-downloads/gs-cd-track2.mp3';
+  const [currentTime, setCurrentTime] = useState(0);
 
-  const handleWave = (): void => {
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const updateTime = () => setCurrentTime(audio.currentTime);
+
+    audio.addEventListener('timeupdate', updateTime);
+  }, []);
+
+  useEffect(() => {
     if (waveformRef.current) {
       wavesurfer.current = WaveSurfer.create({
         barWidth: 3,
@@ -23,16 +43,15 @@ const Waveform: React.FC = () => {
 
       wavesurfer.current.load(url);
     }
-  };
+  }, [])
 
   const handlePlay = (): void => {
-    if (wavesurfer.current) {
+    if (wavesurfer.current && !playing) {
       wavesurfer.current.playPause();
       audioRef?.current?.play();
     }
-    if (playing && wavesurfer.current !== null) {
-      wavesurfer.current.destroy();
-      wavesurfer.current = null;
+    if (playing && wavesurfer.current) {
+      wavesurfer.current.playPause();
       audioRef?.current?.pause();
     }
     setPlaying(!playing);
@@ -40,21 +59,22 @@ const Waveform: React.FC = () => {
 
   const handleSound = () => {
     if (wavesurfer.current == null) {
-      handleWave();
     }
     handlePlay();
   };
 
   return (
-    <div className="flex flex-row items-center justify-center h-[100px] w-full bg-transparent gap-8">
-      <button
-        className="flex justify-center items-center w-[60px] h-[60px] bg-[#efefef] rounded-full border-none outline-none cursor-pointer pb-[3px] hover:bg-[#ddd]"
-        onClick={handleSound}
-      >
-        {!playing ? 'Play' : 'Pause'}
-      </button>
-      <div id="waveform" className="w-full h-[90px]" ref={waveformRef} />
+    <div className="flex flex-col items-center w-full bg-transparent">
+      <div id="waveform" className="w-full" ref={waveformRef} />
       <audio id="track" src={url} ref={audioRef} />
+      <div>{formatTime(currentTime)}</div>
+      <div
+        className={
+          'flex justify-center items-center w-[60px] border-none outline-none cursor-pointer pb-[3px]'
+        }
+      >
+        <PlayButtonIcon onClick={handleSound} />
+      </div>
     </div>
   );
 };
