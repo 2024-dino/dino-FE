@@ -23,7 +23,6 @@ export default function MainPage<Props>({}) {
       <div
         className={`flex flex-col text-center w-full h-screen items-center justify-center relative`}
       >
-        <Waveform />
         <Header onClick={() => setIsSideMenuOpen(true)} />
         <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
         <EventElement />
