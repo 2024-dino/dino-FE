@@ -16,7 +16,7 @@ const EventList = ({ setChosenEvent }: EventListProps) => {
   return (
     <div onClick={() => setChosenEvent(true)}>
       <EventCard>
-        <div className="flex px-3 py-4 w-[calc(100vw-40px)] rounded-[10px] shadow-[0_2px_16px_rgba(68,68,68,0.12)]">
+        <div className="flex px-3 py-4 w-full rounded-[10px] shadow-[0_2px_16px_rgba(68,68,68,0.12)]">
           <h2 className="text-[24px] leading-6 font-bold text-[#EEEEEE] flex justify-start">
             Q.
           </h2>

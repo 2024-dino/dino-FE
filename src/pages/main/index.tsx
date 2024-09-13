@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Header from '../../components/main/Header';
 import EventList from '@/components/main/EventList';
 import QuestionModal from '@/components/main/QuestionModal';
+import Waveform from '@/components/main/Waveform';
 
 interface Props {}
 
