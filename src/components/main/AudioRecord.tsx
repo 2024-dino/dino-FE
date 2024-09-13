@@ -68,6 +68,7 @@ const AudioRecord = () => {
       stopRecording();
     } else {
       setUserInput('');
+      resetTranscript();
       SpeechRecognition.startListening({ language: 'ko-KR', continuous: true });
       startRecording();
     }
@@ -96,6 +97,8 @@ const AudioRecord = () => {
         {audioUrl && (
           <Waveform
             url={audioUrl}
+            toggleListening={toggleListening}
+            setAudioUrl={setAudioUrl}
           />
         )}
       {currentMode === 'record' && audioUrl == null && (
