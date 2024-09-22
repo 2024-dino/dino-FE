@@ -1,16 +1,23 @@
+import { destroyCookie, parseCookies, setCookie } from 'nookies';
+
 const TOKEN_KEY = 'access-code';
 
 export const tokenUtils = {
-  setToken: (token: string) => {
-    localStorage.setItem(TOKEN_KEY, token);
+  setToken: (token: string, ctx?: any) => {
+    setCookie(ctx, TOKEN_KEY, token, {
+      maxAge: 24 * 60 * 60, // 1일
+      path: '/',
+      sameSite: 'strict', // CSRF 공격 방지
+    });
   },
 
-  getToken: (): string | null => {
-    return localStorage.getItem(TOKEN_KEY);
+  getToken: (ctx?: any): string | null => {
+    const cookies = parseCookies(ctx);
+    return cookies[TOKEN_KEY] || null;
   },
 
-  removeToken: () => {
-    localStorage.removeItem(TOKEN_KEY);
+  removeToken: (ctx?: any) => {
+    destroyCookie(ctx, TOKEN_KEY);
   },
 
   isTokenValid: (token: string): boolean => {

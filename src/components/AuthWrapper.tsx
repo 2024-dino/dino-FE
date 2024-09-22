@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { tokenUtils } from '@/utils/tokenUtils';
 import { useRouter } from 'next/router';
-import { useValidateToken } from '../hooks/useAuth';
+import { useValidateToken } from '@/hooks/api/useAuth';
 
 export function AuthWrapper({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [accessCode, setAccessCode] = useState<string | null>(null);
   const { data, isLoading, isError } = useValidateToken(accessCode);
+  const hasRedirected = useRef(false);
 
   useEffect(() => {
     const storedToken = tokenUtils.getToken();
@@ -23,9 +24,8 @@ export function AuthWrapper({ children }: { children: React.ReactNode }) {
         const nickname = params.get('nickname');
 
         if (code) {
-          console.log('access-code : ', code, '\nname : ', nickname);
           setAccessCode(code);
-          tokenUtils.setToken(code);
+          tokenUtils.setToken(code); // 쿠키에 저장 (nookies 라이브러리 사용)
         } else {
           console.error('No access code received');
           router.push('/login?error=no_access_code');
@@ -42,8 +42,9 @@ export function AuthWrapper({ children }: { children: React.ReactNode }) {
   }, [router]);
 
   useEffect(() => {
-    if (data) {
+    if (data && data.isSuccess && !hasRedirected.current) {
       console.log('Token validated:', data);
+      hasRedirected.current = true;
       router.push('/');
     }
   }, [data, router]);

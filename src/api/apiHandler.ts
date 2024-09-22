@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
-interface ServerResponse<T = any> {
+export interface ServerResponse<T = any> {
   isSuccess: boolean;
   code: string;
   message: string;
