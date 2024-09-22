@@ -38,7 +38,7 @@ export default function MainPage<Props>({}) {
           setIsOpen={setIsQuestionModalOpen}
         />
       )}
-      {isCameraOn && <CameraModalPro />}
+      {isCameraOn && <CameraModalPro onClose={() => setIsCameraOn(false)}/>}
     </>
   );
 }
