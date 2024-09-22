@@ -1,6 +1,8 @@
 import {
   UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
+  UseQueryResult,
   useMutation,
   useQuery,
 } from '@tanstack/react-query';
@@ -61,10 +63,22 @@ const request = async <TData = any, TVariables = any>(
   }
 };
 
-export const useRequest = <TData = any, TVariables = any>(
+export function useRequest<TData = any>(
+  path: string,
+  options: RequestOptions<TData> & { method: 'GET' },
+): UseQueryResult<ServerResponse<TData>, AxiosError>;
+
+export function useRequest<TData = any, TVariables = any>(
+  path: string,
+  options: RequestOptions<TData, TVariables> & {
+    method: Exclude<HttpMethod, 'GET'>;
+  },
+): UseMutationResult<ServerResponse<TData>, AxiosError, TVariables>;
+
+export function useRequest<TData = any, TVariables = any>(
   path: string,
   options: RequestOptions<TData, TVariables> = {},
-) => {
+) {
   const {
     method = 'GET',
     queryOptions,
@@ -89,4 +103,4 @@ export const useRequest = <TData = any, TVariables = any>(
       ...mutationOptions,
     });
   }
-};
+}

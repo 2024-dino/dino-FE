@@ -3,15 +3,15 @@ import { ServerResponse, useRequest } from '@/api/apiHandler';
 import { AxiosError } from 'axios';
 import { UseQueryResult } from '@tanstack/react-query';
 
-enum MemberStatus {
+export enum MemberStatus {
   ACTIVE = 'ACTIVE',
 }
 
-enum UserRole {
+export enum UserRole {
   ROLE_USER = 'ROLE_USER',
 }
 
-enum OAuth2Provider {
+export enum OAuth2Provider {
   KAKAO = 'KAKAO',
 }
 
@@ -35,5 +35,5 @@ export const useValidateToken = (
       enabled: !!accessCode,
       retry: false,
     },
-  }) as UseQueryResult<ServerResponse<UserType>, AxiosError>;
+  });
 };
