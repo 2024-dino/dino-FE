@@ -4,6 +4,7 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from 'react-speech-recognition';
 import RecordIcon from '@/assets/icon/RecordIcon.svg';
+import CameraIcon from '@/assets/icon/CameraIcon.svg';
 import RecordingGIF from '@/assets/gif/pulse.gif';
 import Image from 'next/image';
 import Waveform from './Waveform';
@@ -14,7 +15,12 @@ const onRecordingComplete = (blob: Blob) => {
   console.log('녹음 완료:', blob);
 };
 
-const AudioRecord = () => {
+interface AudioRecordProps {
+  onCameraClick: () => void;
+  selectedImage: string | null;
+}
+
+const AudioRecord = ({ onCameraClick, selectedImage }: AudioRecordProps) => {
   const {
     transcript,
     listening,
@@ -90,7 +96,10 @@ const AudioRecord = () => {
                 onChange={(e) => setUserInput(e.target.value)}
               />
             )}
-            <RecordIcon onClick={() => setCurrentMode('record')} />
+            <div className='flex gap-2'>
+              <CameraIcon onClick={onCameraClick} />
+              <RecordIcon onClick={() => setCurrentMode('record')} />
+            </div>
           </div>
         </div>
         {listening && <Image src={RecordingGIF} alt="alt" />}
@@ -101,22 +110,23 @@ const AudioRecord = () => {
             setAudioUrl={setAudioUrl}
           />
         )}
-      {currentMode === 'record' && audioUrl == null && (
-        <button
-          className="w-[42px] h-[42px] rounded-full bg-gray-200 flex items-center justify-center"
-          onClick={toggleListening}
-        >
-          <div className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center">
-            <div
-              className={
-                listening
-                  ? 'bg-red-500 w-[22px] h-[22px] rounded-[4px]'
-                  : 'bg-red-500 w-[36px] h-[36px] rounded-full'
-              }
-            />
-          </div>
-        </button>
-      )}
+        {currentMode === 'record' && audioUrl == null && (
+          <button
+            className="w-[42px] h-[42px] rounded-full bg-gray-200 flex items-center justify-center"
+            onClick={toggleListening}
+          >
+            <div className="w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center">
+              <div
+                className={
+                  listening
+                    ? 'bg-red-500 w-[22px] h-[22px] rounded-[4px]'
+                    : 'bg-red-500 w-[36px] h-[36px] rounded-full'
+                }
+              />
+            </div>
+          </button>
+        )}
+        {selectedImage && <img src={selectedImage} alt="selectedImage" style={{ maxWidth: '300px' }} />}
       </div>
     </>
   );
