@@ -1,7 +1,7 @@
 /* 전체 캘린더 컨테이너에 대한 스타일 */
 .customCalendar {
   @apply font-pretendard-200 w-full;
-  font-size : 12px;
+  font-size: 12px;
 }
 
 /* react-calendar 컴포넌트에 대한 기본 스타일 */
@@ -29,22 +29,24 @@
   @apply w-full;
 }
 
+/* 년, 10년, 100년 뷰의 각 셀 스타일 */
+.reactCalendar :global(.react-calendar__year-view__months__month),
+.reactCalendar :global(.react-calendar__decade-view__years__year),
+.reactCalendar :global(.react-calendar__century-view__decades__decade) {
+  @apply flex justify-center items-center h-[60px] text-[14px];
+}
+
 /* 월별 뷰 스타일 */
 .reactCalendar :global(.react-calendar__month-view) {
   @apply w-full;
 }
+
 /* 월별 뷰의 요일 표시 영역 스타일 */
 .reactCalendar :global(.react-calendar__month-view__weekdays) {
-  @apply uppercase text-[12px] text-center;
-  width: calc(100% - 43px) !important;
+  @apply uppercase text-[12px] text-center h-[40px] items-center;
+  width: calc(100% - 40px) !important;
   margin: 0 auto;
   line-height: normal;
-}
-
-/* 월별 뷰의 날짜 컨테이너 스타일 */
-.reactCalendar :global(.react-calendar__month-view__days) {
-  width: calc(100% - 43px) !important;
-  margin: 0 auto;
 }
 
 /* 개별 요일 셀 스타일 */
@@ -69,9 +71,15 @@
   @apply border-b-0;
 }
 
+/* 월별 뷰의 날짜 컨테이너 스타일 */
+.reactCalendar :global(.react-calendar__month-view__days) {
+  @apply w-[calc(100%-40px)] font-pretendard-300;
+  margin: 0 auto;
+}
+
 /* 캘린더의 각 날짜 셀 스타일 */
 .reactCalendar :global(.react-calendar__tile) {
-  @apply flex flex-col justify-center items-center border-none relative text-[10px] bg-transparent h-[50px]; 
+  @apply flex flex-col justify-center items-center border-none relative bg-transparent h-[60px]; 
 }
 
 /* 날짜 셀 호버 및 포커스 스타일 */
@@ -109,7 +117,7 @@
   width: 20px;
   height: 20px;
   border: none;
-  background : #000;
+  background: #000;
   color: #fff;
   border-radius: 50%;
   z-index: 1;
@@ -121,7 +129,6 @@
   position: relative;
 }
 
-
 /* 날짜 텍스트 스타일 */
 .reactCalendar :global(.react-calendar__tile abbr) {
   position: absolute;
@@ -130,22 +137,28 @@
   transform: translate(-50%, -50%);
 }
 
-
-/* 년, 10년, 100년 뷰의 각 셀 스타일 */
-.reactCalendar :global(.react-calendar__year-view__months__month),
-.reactCalendar :global(.react-calendar__decade-view__years__year),
-.reactCalendar :global(.react-calendar__century-view__decades__decade) {
-  @apply flex justify-center items-center h-[60px] text-[14px];
-}
-
+/* 타일 컨텐츠 래퍼 스타일 */
 .tileContentWrapper {
-  @apply flex justify-center absolute items-center bottom-[6px] left-0 right-0 h-[6px]; 
+  @apply flex justify-center absolute items-center bottom-[8px] left-0 right-0; 
 }
 
-.tileContentMark {
-  @apply w-[6px] h-[6px] rounded-sm;
-  margin: 0 0.5px;
-  background : #BAD7EC
+.twinkleIconWrapper {
+  margin-right: -3px; /* 아이콘들을 겹치게 만듦 */
+  z-index: 1;
+}
+
+/* 마지막 TwinkleIcon 래퍼에는 오른쪽 마진 제거 */
+.twinkleIconWrapper:last-child {
+  margin-right: 0;
+}
+
+/* 두 번째 아이콘부터 z-index 증가 */
+.twinkleIconWrapper:nth-child(2) {
+  z-index: 2;
+}
+
+.twinkleIconWrapper:nth-child(3) {
+  z-index: 3;
 }
 
 /* 일요일 텍스트 색상 */
