@@ -17,6 +17,14 @@
   line-height: 28px;
 }
 
+.reactCalendar :global(.react-calendar__navigation__next-button) {
+  @apply w-5 text-[#999];
+}
+
+.reactCalendar :global(.react-calendar__navigation__prev-button) {
+  @apply w-5 text-[#999];
+}
+
 /* 캘린더의 메인 뷰 컨테이너 스타일 */
 .reactCalendar :global(.react-calendar__viewContainer) {
   @apply w-full flex items-center justify-center;
