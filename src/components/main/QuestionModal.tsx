@@ -79,7 +79,7 @@ const QuestionModal = ({ isOpen, setIsOpen }: QuestionModalProps) => {
             </div>
             <div className="flex flex-col items-center bg-white px-5 w-[calc(100vw-40px)] rounded-[10px] shadow-lg mb-4">
               <div
-                onClick={setIsCameraOn}
+                onClick={() => setIsCameraOn(true)}
                 className="flex items-center justify-center w-full py-5 text-[18px] border-b border-b-gray-300"
               >
                 사진 찍기
