@@ -129,6 +129,7 @@ const AudioRecord = ({
             url={audioUrl}
             toggleListening={toggleListening}
             setAudioUrl={setAudioUrl}
+            closeModal={closeModal}
           />
         )}
         {currentMode === 'record' && audioUrl == null && (
@@ -167,10 +168,12 @@ const AudioRecord = ({
                 </div>
               )}
             </div>
-            <div className={'flex items-center justify-center w-full mt-3'}>
-              <ApproveIcon onClick={closeModal} />
-            </div>
           </>
+        )}
+        {((userInput !== '' || selectedImage) && audioUrl == '') && (
+          <div className={'flex items-center justify-center w-full mt-3'}>
+            <ApproveIcon onClick={closeModal} />
+          </div>
         )}
       </div>
     </>
