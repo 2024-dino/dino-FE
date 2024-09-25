@@ -1,11 +1,9 @@
 import NavBar from '@/components/common/NavBar';
 import FunnelDispenser from '@/components/ing/create/FunnelDispenser';
 import Header from '@/components/main/Header';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 const EventCreatePage = () => {
-  const router = useRouter();
   const [step, setStep] = useState(1);
   return (
     <>

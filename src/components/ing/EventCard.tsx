@@ -39,7 +39,10 @@ const EventCard: React.FC<EventCardProps> = ({
 
         <p className="text-sm text-gray-600">{memo}</p>
       </div>
-      <img src={fileUrl} className="w-24 h-24 bg-gray-200 rounded-md flex-shrink-0 flex items-center justify-center text-xs text-gray-500"/>
+      <img
+        src={fileUrl}
+        className="w-24 h-24 bg-gray-200 rounded-md flex-shrink-0 flex items-center justify-center text-xs text-gray-500"
+      />
     </div>
   );
 };
