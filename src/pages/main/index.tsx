@@ -1,4 +1,5 @@
-import CameraModalPro from '@/components/main/CameraModalPro';
+// main/index
+
 import DateChanger from '@/components/DateChanger';
 import EventElement from '@/components/eventManage/EventElement';
 import EventList from '@/components/main/EventList';
@@ -6,8 +7,6 @@ import Header from '../../components/main/Header';
 import NavBar from '@/components/common/NavBar';
 import QuestionModal from '@/components/main/QuestionModal';
 import SlideMenu from '@/components/main/SideMenu';
-import TimePicker from '@/components/TimePicker';
-import Waveform from '@/components/main/Waveform';
 import { useState } from 'react';
 
 interface Props {}
@@ -15,7 +14,6 @@ interface Props {}
 export default function MainPage<Props>({}) {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
-  const [isCameraOn, setIsCameraOn] = useState(true);
 
   const handleTimeChange = () => {
     return;
@@ -36,7 +34,6 @@ export default function MainPage<Props>({}) {
           setIsOpen={setIsQuestionModalOpen}
         />
       )}
-      {isCameraOn && <CameraModalPro onClose={() => setIsCameraOn(false)} />}
     </>
   );
 }
