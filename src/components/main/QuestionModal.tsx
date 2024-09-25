@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import AudioRecord from './AudioRecord';
+import CameraModalPro from './CameraModalPro';
 interface QuestionModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  setIsCameraOn: () => void;
 }
 
-const QuestionModal = ({
-  isOpen,
-  setIsOpen,
-  setIsCameraOn,
-}: QuestionModalProps) => {
-  const toggleModal = () => setIsOpen(!isOpen);
+const QuestionModal = ({ isOpen, setIsOpen }: QuestionModalProps) => {
   const [isCameraSelectOn, setIsCameraSelectOn] = useState(false);
+  const [isCameraOn, setIsCameraOn] = useState(false);
+  const toggleModal = () => setIsOpen(!isOpen);
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -57,6 +54,7 @@ const QuestionModal = ({
             onCameraClick={() => setIsCameraSelectOn(true)}
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
+            closeModal={toggleModal}
           />
         </div>
       </div>
@@ -103,6 +101,13 @@ const QuestionModal = ({
             </div>
           </div>
         </div>
+      )}
+      {isCameraOn && (
+        <CameraModalPro
+          selectImage={setSelectedImage}
+          closeCameraSelect={() => setIsCameraSelectOn(false)}
+          onClose={() => setIsCameraOn(false)}
+        />
       )}
     </div>
   );

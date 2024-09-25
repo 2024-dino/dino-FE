@@ -28,12 +28,14 @@ interface AudioRecordProps {
   onCameraClick: () => void;
   selectedImage: string | null;
   setSelectedImage: Dispatch<SetStateAction<string | null>>;
+  closeModal: () => void;
 }
 
 const AudioRecord = ({
   onCameraClick,
   selectedImage,
   setSelectedImage,
+  closeModal,
 }: AudioRecordProps) => {
   const {
     transcript,
@@ -166,8 +168,8 @@ const AudioRecord = ({
               )}
             </div>
             <div className={'flex items-center justify-center w-full mt-3'}>
-              <ApproveIcon />
-            </div>{' '}
+              <ApproveIcon onClick={closeModal} />
+            </div>
           </>
         )}
       </div>
