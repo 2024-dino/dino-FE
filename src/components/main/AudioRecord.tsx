@@ -170,7 +170,7 @@ const AudioRecord = ({
             </div>
           </>
         )}
-        {((userInput !== '' || selectedImage) && audioUrl == '') && (
+        {((userInput !== '' || selectedImage) && audioUrl == null) && (
           <div className={'flex items-center justify-center w-full mt-3'}>
             <ApproveIcon onClick={closeModal} />
           </div>
