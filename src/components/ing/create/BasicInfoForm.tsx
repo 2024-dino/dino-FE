@@ -8,23 +8,17 @@ const BasicInfoForm = ({setStep}: StepProps) => {
   return (
     <>
       <div className="flex flex-col items-center justify-start w-full px-5">
-        <div className="w-full mb-4">
+        <div className="w-full mb-5">
           <label
-            className="block text-lg tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left mb-5"
+            className="block text-lg tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left"
             htmlFor="eventInfo"
           >
             이벤트 정보를 입력해주세요.
           </label>
-          <input
-            className="appearance-none border border-[rgba(136,136,136,0.4)] rounded-lg w-full p-[18px] text-lg tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left focus:outline-none"
-            id="eventInfo"
-            type="text"
-            placeholder="이벤트 정보를 입력해주세요."
-          />
         </div>
         <div className="w-full mb-7">
           <label
-            className="block text-lg tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left mb-5"
+            className="block text-base tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left mb-3"
             htmlFor="eventName"
           >
             이벤트 이름을 입력해주세요.
@@ -38,7 +32,7 @@ const BasicInfoForm = ({setStep}: StepProps) => {
         </div>
         <div className="w-full mb-7">
           <label
-            className="block text-lg tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left mb-5"
+            className="block text-base tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left mb-3"
             htmlFor="eventDate"
           >
             이벤트 날짜를 입력해주세요.
@@ -52,7 +46,7 @@ const BasicInfoForm = ({setStep}: StepProps) => {
         </div>
         <div className="w-full">
           <label
-            className="block text-lg tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left mb-5"
+            className="block text-base tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/60 text-left mb-3"
             htmlFor="additionalInfo"
           >
             추가로 메모하실 내용을 입력해주세요. (선택)
