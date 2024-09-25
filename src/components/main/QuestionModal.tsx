@@ -56,6 +56,7 @@ const QuestionModal = ({
           <AudioRecord
             onCameraClick={() => setIsCameraSelectOn(true)}
             selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
           />
         </div>
       </div>
