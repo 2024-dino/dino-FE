@@ -6,5 +6,5 @@ export interface EventPostRequest {
   memo: string;
   occurrenceTime: string;
   emotion: string;
-  questionSize: number | undefined;
+  questionSize: number;
 }

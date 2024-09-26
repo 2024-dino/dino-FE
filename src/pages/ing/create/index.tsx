@@ -30,7 +30,7 @@ const EventCreatePage = () => {
     memo: '', //추가 메모
     occurrenceTime: '', //질문 받을 시각
     emotion: '', //감정 선택
-    questionSize: undefined, //질문 갯수
+    questionSize: 0, //질문 갯수
   });
   return (
     <>
