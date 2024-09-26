@@ -1,4 +1,10 @@
 import { CompleteEventType } from '@/types/hiStory';
+import CompletedEventThumbnail from '@/components/hiStory/CompletedEventThumbnail';
+import Header from '@/components/main/Header';
+import NavBar from '@/components/common/NavBar';
+import SlideMenu from '@/components/main/SideMenu';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const mockCompletedEventList: CompleteEventType[] = [
   {
@@ -96,7 +102,37 @@ const mockCompletedEventList: CompleteEventType[] = [
 ];
 
 const CompletedEventsPage = () => {
-  return <div>CompletedEventsPage</div>;
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [completedEventList, setCompletedEventList] = useState(
+    mockCompletedEventList,
+  );
+  const router = useRouter();
+
+  const handleEventClick = (eventId: number) => {
+    router.push(`/hi-story/completed-events/${eventId}`);
+  };
+
+  return (
+    <div
+      className="flex flex-col w-full h-screen"
+      style={{
+        background:
+          'linear-gradient(168deg, rgba(251, 243, 231, 0.20) 0%, rgba(185, 206, 215, 0.20) 47.11%, rgba(235, 219, 244, 0.20) 100%), #FFF',
+        boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
+      }}
+    >
+      <Header onClick={() => setIsSideMenuOpen(true)} />
+      <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
+
+      <div className="mt-9">
+        <CompletedEventThumbnail
+          eventList={completedEventList}
+          onEventClick={handleEventClick}
+        />
+      </div>
+      <NavBar />
+    </div>
+  );
 };
 
 export default CompletedEventsPage;
