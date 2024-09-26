@@ -42,7 +42,13 @@ const QuestionInfoForm = ({ setStep }: QuestionInfoFormProps) => {
         >
           질문 개수를 설정해주세요.
         </label>
-        <div className='flex flex-row gap-1'><div>{eventInfo.questionSize + "개"}</div><div> | {cycleCalculator(eventInfo.endDate, eventInfo.questionSize)} 질문이 생성됩니다.</div></div>
+        <div className="flex flex-row gap-1">
+          <div>{eventInfo.questionSize + '개'}</div>
+          <div>
+            | {cycleCalculator(eventInfo.endDate, eventInfo.questionSize)}{' '}
+            질문이 생성됩니다.
+          </div>
+        </div>
         <QuestionNumSelectSlider />
       </div>
       <div className="absolute bottom-[100px] w-full flex gap-1.5 items-center jusify-center px-5">
