@@ -8,7 +8,7 @@ interface Props {
 const CompletedEventThumbnail = ({ eventList }: Props) => {
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="w-[calc(100%-40px)] grid grid-cols-2 gap-6">
+      <div className="w-[calc(100%-40px)] grid grid-cols-2 gap-4">
         {eventList.map((event) => (
           <div
             key={event.eventId}
@@ -21,7 +21,7 @@ const CompletedEventThumbnail = ({ eventList }: Props) => {
           >
             <div className="flex flex-col gap-0.5 mt-3.5">
               <span className="font-pretendard-200 text-[12px]">
-                {moment(event.startDate.toString()).format('yyyy.MM.DD')}-
+                {moment(event.startDate.toString()).format('yyyy.MM.DD')} -{' '}
                 {moment(event.endDate.toString()).format('MM.DD')}
               </span>
 

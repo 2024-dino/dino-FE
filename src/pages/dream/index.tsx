@@ -253,12 +253,21 @@ const DreamPage = () => {
     <div className="flex flex-col w-full h-screen">
       <Header onClick={() => setIsSideMenuOpen(true)} />
       <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
-      <CustomCalendar
-        eventList={eventList}
-        setSelectedDate={handleDateSelect}
-      />
-      {/* <span className="text-slate-500">{selectedDate.toString()}</span> */}
-      <EventListShow events={filteredEvents} />
+      <div
+        style={{
+          background:
+            'linear-gradient(168deg, rgba(251, 243, 231, 0.20) 0%, rgba(185, 206, 215, 0.20) 47.11%, rgba(235, 219, 244, 0.20) 100%), #FFF',
+          boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
+        }}
+        className="flex-1 overflow-y-auto pb-[68px]"
+      >
+        <CustomCalendar
+          eventList={eventList}
+          setSelectedDate={handleDateSelect}
+        />
+        {/* <span className="text-slate-500">{selectedDate.toString()}</span> */}
+        <EventListShow events={filteredEvents} />
+      </div>
       <NavBar />
     </div>
   );
