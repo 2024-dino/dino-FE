@@ -6,8 +6,12 @@ const QuestionNumSelectSlider: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const sliderRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    setPosition({x: Number(sliderRef.current?.offsetWidth)-23, y: -23})
+  }, [])
+
   const handleDrag = (e: any, data: { x: number; y: number }) => {
-    setPosition({ x: data.x, y: 0 });
+    setPosition({ x: data.x, y: -23 });
   };
 
   const handleDragStop = () => {
@@ -16,7 +20,7 @@ const QuestionNumSelectSlider: React.FC = () => {
       const sectionWidth = sliderWidth / 4;
       const nearestSection = Math.round(position.x / sectionWidth);
       const newX = nearestSection * sectionWidth;
-      setPosition({ x: newX, y: 0 });
+      setPosition({ x: newX-23, y: -23 });
     }
   };
 
@@ -37,7 +41,7 @@ const QuestionNumSelectSlider: React.FC = () => {
           onDrag={handleDrag}
           onStop={handleDragStop}
         >
-          <div className='absolute top-[-11px] left-[-11px] -translate-y-1/2 w-6 h-6 rounded-full cursor-pointer flex items-center justify-center'>
+          <div className='absolute -translate-y-1/2 w-12 h-12 rounded-full cursor-pointer flex items-center justify-center'>
             <StarIcon />
           </div>
         </Draggable>
