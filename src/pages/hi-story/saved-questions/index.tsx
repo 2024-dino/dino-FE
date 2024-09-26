@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 
 import Header from '@/components/main/Header';
 import { MonthAllEventsType } from '@/types/hiStory';
+import MonthlyEventGroup from '@/components/hiStory/CompltedEvents/MonthlyEventGroup';
 import NavBar from '@/components/common/NavBar';
 import SlideMenu from '@/components/main/SideMenu';
-import moment from 'moment';
 
 const mockAllEventList: MonthAllEventsType[] = [
   {
@@ -161,20 +161,13 @@ const mockAllEventList: MonthAllEventsType[] = [
     ],
   },
 ];
+
 const SavedQuestionsPage = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [allEventList, setAllEventList] = useState<MonthAllEventsType[]>([]);
-  const [showAnswers, setShowAnswers] = useState<{ [key: number]: boolean }>(
-    {},
-  );
 
-  const toggleShowAnswer = (questionId: number) => {
-    setShowAnswers((prev) => ({
-      ...prev,
-      [questionId]: !prev[questionId],
-    }));
-  };
   const fetchData = async () => {
+    // API Call
     setAllEventList(mockAllEventList);
   };
 
@@ -195,53 +188,9 @@ const SavedQuestionsPage = () => {
       <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
 
       <div className="flex-1 overflow-y-auto pb-[68px] mb-8">
-        {allEventList.length > 0 &&
-          allEventList.map((event) => (
-            <div
-              key={event.eventDate.toString()}
-              className="flex items-center justify-center flex-col"
-            >
-              <div
-                className="text-center font-pretendard-300 text-[20px] mb-5 mt-8"
-                style={{ color: 'rgba(0, 0, 0, 0.60)' }}
-              >
-                {moment(event.eventDate.toString()).format('MMM, yyyy')}
-              </div>
-
-              {event.questionContent.map((question, index) => (
-                <div
-                  key={question.questionId}
-                  className="w-[calc(100%-40px)] h-auto py-4  mb-3 self-center rounded-[10px] bg-white"
-                  style={{
-                    boxShadow: '0px 2px 16px 0px rgba(68, 68, 68, 0.12)',
-                  }}
-                  onClick={() => toggleShowAnswer(question.questionId)}
-                >
-                  <div className="w-full flex flex-col items-center justify-center px-[10px]">
-                    <div className="w-full items-center flex">
-                      <span className="font-pretendard-300 text-[#BAD7EC] text-[24px]">
-                        Q.
-                      </span>
-                      <span className="ml-[10px] font-pretendard-200 text-[14px]">
-                        {question.content}
-                      </span>
-                    </div>
-
-                    {question.isAnswer && showAnswers[question.questionId] && (
-                      <div className="w-full flex items-center">
-                        <span className="font-pretendard-300 text-[#BAD7EC] text-[24px]">
-                          A.
-                        </span>
-                        <span className="ml-[10px] font-pretendard-200 text-[14px]">
-                          {question.myAnswer}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ))}
+        {allEventList.map((event) => (
+          <MonthlyEventGroup key={event.eventDate.toString()} event={event} />
+        ))}
       </div>
 
       <NavBar />

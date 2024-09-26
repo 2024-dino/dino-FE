@@ -211,8 +211,8 @@ const mockCompletedEventList: CompleteEventType[] = [
     representativeQuestion: {
       questionId: 203,
       content: '새롭게 알게 된 사실이 있나요?',
-      isAnswer: false,
-      myAnswer: '',
+      isAnswer: true,
+      myAnswer: '내가 어케 알아~',
     },
   },
   {
