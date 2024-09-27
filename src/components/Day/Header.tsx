@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 const Header = ({ onClick }: HeaderProps) => {
   const router = useRouter();
-  const pageName = router.pathname[1].toUpperCase() + router.pathname.slice(2);
+  const pageName = router.pathname.split('/')[1][0].toUpperCase() + router.pathname.split('/')[1].slice(1);
   return (
     <div className="flex items-center justify-between w-full h-[52px] px-5">
       <div className="text-black/40 font-['edensor'] text-[22px] font-bold">
