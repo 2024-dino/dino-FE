@@ -40,7 +40,7 @@ const EventCreatePage = () => {
     <>
       <EventContext.Provider value={{ eventInfo, setEventInfo }}>
         <div className="flex flex-col items-center justify-start w-full h-screen">
-          <Header onClick={() => console.log('/')} />
+          <Header onClick={() => setIsSideMenuOpen(true)} />
           <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
           <FunnelDispenser step={step} setStep={setStep} />
           <NavBar />

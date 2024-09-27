@@ -56,12 +56,12 @@ const NavBar: FunctionComponent = () => {
           </div>
         </>
       </NavBarIcon>
-      <NavBarIcon goTo="/hiStory">
+      <NavBarIcon goTo="/hi-story">
         <>
-          <HiStoryIcon active={router.pathname === '/hiStory'} />
+          <HiStoryIcon active={router.pathname === '/hi-story'} />
           <div
             className={`${
-              router.pathname === '/hiStory' ? 'text-[#8ABADD]' : 'text-[#CCC]'
+              router.pathname === '/hi-story' ? 'text-[#8ABADD]' : 'text-[#CCC]'
             } text-center font-['edensor'] text-xs font-bold`}
           >
             Hi, story
