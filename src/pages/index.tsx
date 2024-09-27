@@ -1,10 +1,11 @@
-import { Inter } from "next/font/google";
-import MainPage from './main';
+import { Inter } from 'next/font/google';
+import MainPage from './day';
+import { useRouter } from 'next/router';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
-  return (
-    <MainPage />
-  );
+  const router = useRouter();
+  router.push('/day')
+  return <></>;
 }

@@ -2,11 +2,11 @@
 
 import DateChanger from '@/components/DateChanger';
 import EventElement from '@/components/eventManage/EventElement';
-import EventList from '@/components/main/EventList';
-import Header from '../../components/main/Header';
+import EventList from '@/components/Day/EventList';
+import Header from '../../components/Day/Header';
 import NavBar from '@/components/common/NavBar';
-import QuestionModal from '@/components/main/QuestionModal';
-import SlideMenu from '@/components/main/SideMenu';
+import QuestionModal from '@/components/Day/QuestionModal';
+import SlideMenu from '@/components/Day/SideMenu';
 import { useState } from 'react';
 
 interface Props {}

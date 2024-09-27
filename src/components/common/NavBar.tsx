@@ -32,12 +32,12 @@ const NavBar: FunctionComponent = () => {
   const router = useRouter();
   return (
     <div className="flex justify-self-center justify-between w-full shadow-[0_-2px_12px_rgba(68,68,68,0.08)] rounded-t-[20px] bg-white h-[81px] absolute bottom-1">
-      <NavBarIcon goTo="/main">
+      <NavBarIcon goTo="/day">
         <>
-          <DayIcon active={router.pathname === '/main'} />
+          <DayIcon active={router.pathname === '/day'} />
           <div
             className={`${
-              router.pathname === '/main' ? 'text-[#8ABADD]' : 'text-[#CCC]'
+              router.pathname === '/day' ? 'text-[#8ABADD]' : 'text-[#CCC]'
             } text-center font-['edensor'] text-xs font-bold`}
           >
             Day
