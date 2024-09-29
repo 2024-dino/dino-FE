@@ -311,8 +311,10 @@ const HiStoryPage = () => {
         <div className="flex flex-col gap-8 mt-8">
           <div>
             <div className="flex items-center justify-center w-full">
-              <div className="w-[calc(100%-40px)] flex justify-between mb-1.5">
-                <span>뭐라고 적을까용</span>
+              <div className="w-[calc(100%-40px)] flex justify-between mb-3">
+                <span className="font-pretendard-500 text-[#8ABADD] text-[20px]">
+                  Moments
+                </span>
 
                 <div onClick={() => handleRoute('saved-questions')}>
                   <ChevronRightIcon />
@@ -326,8 +328,10 @@ const HiStoryPage = () => {
 
           <div>
             <div className="flex items-center justify-center w-full">
-              <div className="w-[calc(100%-40px)] flex justify-between mb-1.5">
-                <span>뭐라고 적을까용</span>
+              <div className="w-[calc(100%-40px)] flex justify-between mb-3">
+                <span className="font-pretendard-500 text-[#8ABADD] text-[20px]">
+                  Growths
+                </span>
                 <div onClick={() => handleRoute('completed-events')}>
                   <ChevronRightIcon />
                 </div>

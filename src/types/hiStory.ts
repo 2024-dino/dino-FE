@@ -11,6 +11,8 @@ export interface CompleteEventType {
     content: string;
     isAnswer: boolean;
     myAnswer: string;
+    fileUrl?: string;
+    type?: AnswerType;
   };
 }
 
