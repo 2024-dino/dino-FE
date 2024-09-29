@@ -73,19 +73,19 @@ const QuestionModal = ({ isOpen, setIsOpen }: QuestionModalProps) => {
           >
             <div
               onClick={() => setIsCameraSelectOn(false)}
-              className="flex items-center justify-center bg-white px-5 py-5 mb-10 w-[calc(100vw-40px)] rounded-[10px] shadow-lg text-[18px]"
+              className="flex items-center justify-center bg-white px-5 py-5 mb-10 w-[calc(100vw-40px)] rounded-[10px] shadow-lg text-[var(--0-Black-Color)] text-center font-['Pretendard-Regular'] text-base leading-[120%] tracking-[-0.64px]"
             >
               취소하기
             </div>
             <div className="flex flex-col items-center bg-white px-5 w-[calc(100vw-40px)] rounded-[10px] shadow-lg mb-4">
               <div
                 onClick={() => setIsCameraOn(true)}
-                className="flex items-center justify-center w-full py-5 text-[18px] border-b border-b-gray-300"
+                className="flex items-center justify-center w-full py-5 text-[var(--0-Black-Color)] text-center font-['Pretendard-Regular'] text-base leading-[120%] tracking-[-0.64px] border-b border-b-gray-300"
               >
                 사진 찍기
               </div>
               <label
-                className="flex items-center justify-center w-full py-5 text-[18px]"
+                className="flex items-center justify-center w-full py-5 text-[var(--0-Black-Color)] text-center font-['Pretendard-Regular'] text-base leading-[120%] tracking-[-0.64px]"
                 htmlFor="imgfile"
               >
                 앨범에서 불러오기
