@@ -9,13 +9,15 @@ import QuestionModal from '@/components/Day/QuestionModal';
 import SlideMenu from '@/components/Day/SideMenu';
 import { useState } from 'react';
 import ProgressBar from '@/components/Day/ProgressBar';
+import { useGetEvents } from '@/hooks/api/useEvent';
 
 interface Props {}
 
 export default function MainPage<Props>({}) {
+  const { data, isSuccess, error } = useGetEvents();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
-
+  console.log(data);
   const handleTimeChange = () => {
     return;
   };
