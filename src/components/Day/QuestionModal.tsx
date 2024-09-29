@@ -41,11 +41,11 @@ const QuestionModal = ({ isOpen, setIsOpen }: QuestionModalProps) => {
           }`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="flex flew-row gap-1 bg-white px-3 py-4 w-[calc(100vw-40px)] rounded-[10px] shadow-lg mb-4">
-            <h2 className="text-[24px] leading-6 font-bold text-[#EEEEEE] flex justify-start">
+          <div className="flex flew-row gap-2 bg-white px-3 py-4 w-[calc(100vw-40px)] rounded-[10px] shadow-lg mb-4">
+            <h2 className="text-[#BAD7EC] font-['edensor'] text-2xl leading-[20px] tracking-[-1px] flex justify-start">
               Q.
             </h2>
-            <p>
+            <p className="text-[#000] font-pretendard text-sm font-extralight leading-[20px] tracking-[-1px]">
               ( ) 하고 싶은 것을 이룬다면, 가장 먼저 알리고 싶은 사람은
               누구인가요?
             </p>

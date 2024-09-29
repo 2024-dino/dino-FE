@@ -22,7 +22,7 @@ const IngPage = () => {
       <div className="absolute bottom-[100px] w-full px-5 flex items-center jusify-center">
         <button
           onClick={() => router.push('/ing/create')}
-          className="w-full relative shadow-[0_2px_20px_rgba(136,136,136,0.12)] rounded-lg bg-white/80 h-[52px]"
+          className="w-full relative shadow-[0_2px_20px_rgba(136,136,136,0.12)] rounded-lg bg-white/80 h-[52px] text-black/60 text-center font-pretendard text-base font-light leading-[120%] tracking-[-0.64px]"
         >
           새로운 이벤트 생성
         </button>
