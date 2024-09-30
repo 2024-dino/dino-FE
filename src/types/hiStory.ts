@@ -1,6 +1,7 @@
 export interface CompleteEventType {
   eventId: number;
   title: string;
+  emotion: string;
   category: string;
   eventStatus: string; // termination 고정
   startDate: string | Date;

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 
 import { CompleteEventType } from '@/types/hiStory';
+import { EmotionType } from '@/types/emotion';
 import Header from '@/components/Day/Header';
 import NavBar from '@/components/common/NavBar';
 import NextTriButtonIcon from '@/assets/icon/NextTriButtonIcon';
 import PrevTriButtonIcon from '@/assets/icon/PrevTriButtonIcon';
 import QuestionAndAnswer from '@/components/hiStory/CompltedEvents/QuestionAndAnswer';
 import SlideMenu from '@/components/Day/SideMenu';
+import { getBackGroundStyle } from '@/utils/emotionColor';
 import { useRouter } from 'next/router';
 
 const mockCompletedEventList: CompleteEventType[] = [
@@ -18,6 +20,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     startDate: '2023-09-01',
     endDate: '2023-09-01',
     fileUrl: 'https://example.com/event1.jpg',
+    emotion: 'JOY',
     representativeQuestion: {
       questionId: 201,
       content: '이벤트를 통해 무엇을 배웠나요?',
@@ -33,6 +36,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     startDate: '2023-09-02',
     endDate: '2023-09-03',
     fileUrl: 'https://example.com/event2.jpg',
+    emotion: 'HAPPINESS',
     representativeQuestion: {
       questionId: 202,
       content: '가장 인상 깊었던 순간은?',
@@ -48,6 +52,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     startDate: '2023-09-04',
     endDate: '2023-09-04',
     fileUrl: 'https://example.com/event3.jpg',
+    emotion: 'SATISFACTION',
     representativeQuestion: {
       questionId: 203,
       content: '새롭게 알게 된 사실이 있나요?',
@@ -63,6 +68,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     startDate: '2023-10-01',
     endDate: '2023-10-31',
     fileUrl: 'https://example.com/event4.jpg',
+    emotion: 'EXPECTATION',
     representativeQuestion: {
       questionId: 204,
       content: '이번 달 가장 인상 깊었던 책은?',
@@ -78,6 +84,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     startDate: '2023-11-01',
     endDate: '2023-11-30',
     fileUrl: 'https://example.com/event5.jpg',
+    emotion: 'HOPE',
     representativeQuestion: {
       questionId: 205,
       content: '한 달간의 변화 중 가장 큰 것은?',
@@ -94,6 +101,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     startDate: '2023-12-20',
     endDate: '2023-12-24',
     fileUrl: 'https://example.com/event6.jpg',
+    emotion: 'LOVE',
     representativeQuestion: {
       questionId: 206,
       content: '봉사활동을 통해 느낀 점은?',
@@ -375,12 +383,7 @@ const EventDetailPage = () => {
   return (
     <div
       className="flex flex-col w-full h-screen"
-      style={{
-        background: `
-          radial-gradient(56.98% 56.98% at 50% 43.02%, rgba(74, 159, 168, 0.20) 0%, rgba(255, 255, 255, 0.00) 100%),
-          linear-gradient(168deg, rgba(161, 219, 210, 0.20) 0%, rgba(250, 221, 135, 0.20) 47.11%, rgba(244, 241, 199, 0.20) 100%)
-        `,
-      }}
+      style={getBackGroundStyle(event.emotion as EmotionType)}
     >
       <Header onClick={() => setIsSideMenuOpen(true)} />
       <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
