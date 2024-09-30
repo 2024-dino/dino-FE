@@ -1,4 +1,4 @@
-import { EmotionType } from '@/pages/dream';
+import { EmotionType } from '@/types/emotion';
 
 export const getEmotionColor = (emotion: EmotionType) => {
   switch (emotion) {

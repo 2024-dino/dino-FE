@@ -422,19 +422,17 @@ const EventDetailPage = () => {
               대표 질문
             </span>
           </div>
+        </div>
 
-          <QuestionAndAnswer
-            question={event.representativeQuestion}
-            isRepresent={true}
-          />
+        <QuestionAndAnswer
+          question={event.representativeQuestion}
+          isRepresent={true}
+        />
 
-          <div className="mt-10">
-            {eventDetail?.questionContent.map((question) => (
-              <div key={question.questionId}>
-                <QuestionAndAnswer question={question} />
-              </div>
-            ))}
-          </div>
+        <div className="mt-10 w-full">
+          {eventDetail?.questionContent.map((question) => (
+            <QuestionAndAnswer key={question.questionId} question={question} />
+          ))}
         </div>
       </div>
 
