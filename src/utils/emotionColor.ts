@@ -52,6 +52,19 @@ export const getBackGroundStyle = (emotion: EmotionType) => {
   }
 };
 
-export const getProgressColor = (emotion: EmotionType) => {};
-
-export const getDayButtonColor = (emotion: EmotionType) => {};
+export const getProgressAndButtonColor = (emotion: EmotionType) => {
+  switch (emotion) {
+    case 'JOY':
+      return '#F5E5A4';
+    case 'HAPPINESS':
+      return '#B4DFFD';
+    case 'LOVE':
+      return '#F9CDCD';
+    case 'SATISFACTION':
+      return '#FCC4A2';
+    case 'HOPE':
+      return '#B0EA9C';
+    case 'EXPECTATION':
+      return '#DCBFE5';
+  }
+};

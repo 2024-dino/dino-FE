@@ -5,8 +5,10 @@ export interface CompleteEventType {
   category: string;
   eventStatus: string; // termination 고정
   startDate: string | Date;
-  fileUrl: string;
   endDate: string | Date;
+  fileUrl: string;
+  totalQuestionCount: number;
+  totalAnswerCount: number;
   representativeQuestion: {
     questionId: number;
     content: string;
