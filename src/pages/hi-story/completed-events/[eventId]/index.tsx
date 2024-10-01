@@ -33,6 +33,9 @@ const mockCompletedEventList: CompleteEventType[] = [
       isPriority: false,
       isAnswer: true,
       myAnswer: '새로운 경험의 중요성을 깨달았습니다.',
+      questionDate: '2023-09-01',
+      fileUrl: '',
+      type: 'TEXT',
     },
   },
   {
@@ -52,6 +55,9 @@ const mockCompletedEventList: CompleteEventType[] = [
       isPriority: true,
       isAnswer: true,
       myAnswer: '석양을 바라보며 느낀 평화로움이었습니다.',
+      questionDate: '2023-09-03',
+      fileUrl: 'https://example.com/sunset.jpg',
+      type: 'IMAGE',
     },
   },
   {
@@ -71,6 +77,9 @@ const mockCompletedEventList: CompleteEventType[] = [
       isPriority: false,
       isAnswer: true,
       myAnswer: '내가 어케 알아~',
+      questionDate: '2023-09-04',
+      fileUrl: '',
+      type: 'TEXT',
     },
   },
   {
@@ -90,6 +99,9 @@ const mockCompletedEventList: CompleteEventType[] = [
       isPriority: false,
       isAnswer: true,
       myAnswer: '『사피엔스』, 인류 역사에 대한 새로운 시각을 얻었습니다.',
+      questionDate: '2023-10-31',
+      fileUrl: '',
+      type: 'TEXT',
     },
   },
   {
@@ -110,6 +122,9 @@ const mockCompletedEventList: CompleteEventType[] = [
       isAnswer: true,
       myAnswer:
         '아침 기상 시간이 규칙적으로 변했고, 전반적인 컨디션이 좋아졌습니다.',
+      questionDate: '2023-11-30',
+      fileUrl: 'https://example.com/health-chart.jpg',
+      type: 'IMAGE',
     },
   },
   {
@@ -130,6 +145,9 @@ const mockCompletedEventList: CompleteEventType[] = [
       isAnswer: true,
       myAnswer:
         '작은 도움이 모여 큰 변화를 만들 수 있다는 것을 직접 경험했습니다.',
+      questionDate: '2023-12-24',
+      fileUrl: 'https://example.com/volunteer-audio.mp3',
+      type: 'VOICE',
     },
   },
 ];

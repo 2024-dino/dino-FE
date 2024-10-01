@@ -1,8 +1,9 @@
-import { CompleteEventType, QuestionContentType } from '@/types/hiStory';
 import { useEffect, useState } from 'react';
 
 import BookmarkIcon from '@/assets/icon/BookMarkIcon';
+import { CompleteEventType } from '@/types/hiStory';
 import { EmotionType } from '@/types/emotion';
+import { QuestionContentType } from '@/types/question';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
 
 interface Props {
@@ -112,12 +113,19 @@ const QuestionAndAnswer = ({
                   {renderAnswer(question.type!)}
                 </div>
               </div>
-              {isAvailBookmark && (
+              {isAvailBookmark ? (
                 <div
                   className="absolute bottom-[11px] right-4"
                   onClick={toggleIsBookmark}
                 >
                   <BookmarkIcon isMarked={isBookmark} />
+                </div>
+              ) : (
+                <div
+                  className="absolute bottom-[11px] right-4"
+                  onClick={toggleIsBookmark}
+                >
+                  <span>생성 날짜?</span>
                 </div>
               )}
             </>

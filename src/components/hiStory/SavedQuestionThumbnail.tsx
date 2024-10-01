@@ -1,4 +1,4 @@
-import { MonthAllEventsType, QuestionContentType } from '@/types/hiStory';
+import { QuestionContentType } from '@/types/question';
 
 interface Props {
   questionList: QuestionContentType[];

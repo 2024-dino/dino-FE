@@ -5,6 +5,7 @@ import { EmotionType } from '@/types/emotion';
 import Header from '@/components/Day/Header';
 import NavBar from '@/components/common/NavBar';
 import QuestionAndAnswer from '@/components/hiStory/CompltedEvents/QuestionAndAnswer';
+import { QuestionContentType } from '@/types/question';
 import SlideMenu from '@/components/Day/SideMenu';
 import moment from 'moment';
 
@@ -261,7 +262,7 @@ const DreamPage = () => {
           {filteredEvents.map((event) => (
             <QuestionAndAnswer
               key={event.title}
-              question={event}
+              question={event as unknown as QuestionContentType}
               title={event.title}
             />
           ))}
