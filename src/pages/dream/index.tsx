@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import CustomCalendar from '@/components/dream/CustomCalendar';
-import EventListShow from '@/components/dream/EventListShow';
+import { EmotionType } from '@/types/emotion';
 import Header from '@/components/Day/Header';
 import NavBar from '@/components/common/NavBar';
+import QuestionAndAnswer from '@/components/hiStory/CompltedEvents/QuestionAndAnswer';
 import SlideMenu from '@/components/Day/SideMenu';
 import moment from 'moment';
 
@@ -11,22 +12,6 @@ export interface MonthEventType {
   eventDate: Date | string;
   eventContent: EventContent[];
 }
-
-export type EmotionType =
-  | 'JOY'
-  | 'HAPPINESS'
-  | 'LOVE'
-  | 'SATISFACTION'
-  | 'HOPE'
-  | 'EXPECTATION';
-// export enum Emotion {
-//   JOY = 'JOY',
-//   HAPPINESS = 'HAPPINESS',
-//   LOVE = 'LOVE',
-//   SATISFACTION = 'SATISFACTION',
-//   HOPE = 'HOPE',
-//   EXPECTATION = 'EXPECTATION',
-// }
 
 export interface EventContent {
   eventId: number;
@@ -272,8 +257,15 @@ const DreamPage = () => {
           eventList={eventList}
           setSelectedDate={handleDateSelect}
         />
-        {/* <span className="text-slate-500">{selectedDate.toString()}</span> */}
-        <EventListShow events={filteredEvents} />
+        <div className="mt-[50px] w-full gap-5 flex flex-col">
+          {filteredEvents.map((event) => (
+            <QuestionAndAnswer
+              key={event.title}
+              question={event}
+              title={event.title}
+            />
+          ))}
+        </div>
       </div>
       <NavBar />
     </div>
