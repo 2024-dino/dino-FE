@@ -1,15 +1,24 @@
-import MenuIcon from '@/assets/icon/Menu.svg';
+import { useEffect, useState } from 'react';
+
 import CloseIcon from '@/assets/icon/CloseIcon.svg';
 import Image from 'next/image';
+import MenuIcon from '@/assets/icon/Menu.svg';
+import { tokenUtils } from '@/utils/tokenUtils';
 
 interface SlideMenuProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 const SlideMenu = ({ isOpen, setIsOpen }: SlideMenuProps) => {
+  const [userName, setUserName] = useState<string | null>(null);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    setUserName(tokenUtils.getUserName());
+  }, []);
 
   return (
     <div className="z-10">
@@ -34,7 +43,7 @@ const SlideMenu = ({ isOpen, setIsOpen }: SlideMenuProps) => {
         </div>
         <div className="flex justify-between pb-8">
           <div className="text-[#333] font-pretendard text-2xl font-normal tracking-[-0.3px]">
-            ##님
+            {userName ? `${userName}님` : ''}
           </div>
           <div className="flex justify-between items-center gap-2">
             <div className="text-[#888] font-pretendard-300 text-xs leading-5 tracking-[-0.48px]">

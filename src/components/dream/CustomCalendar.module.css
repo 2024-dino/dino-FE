@@ -89,7 +89,7 @@
 
 /* 캘린더의 각 날짜 셀 스타일 */
 .reactCalendar :global(.react-calendar__tile) {
-  @apply flex flex-col justify-center items-center border-none relative bg-transparent h-[60px]; 
+  @apply flex flex-col justify-center items-center border-none relative bg-transparent h-[58px]; 
 }
 
 /* 날짜 셀 호버 및 포커스 스타일 */

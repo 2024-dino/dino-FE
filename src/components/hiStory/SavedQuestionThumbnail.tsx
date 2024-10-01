@@ -9,6 +9,7 @@ const SavedQuestionThumbnail = ({ questionList }: Props) => {
     <div className="flex flex-col w-full items-center">
       {questionList.map((question, index) => (
         <div
+          key={index}
           className="w-[calc(100%-40px)] h-[72px] mb-[12px] rounded-[10px] bg-white"
           style={{ boxShadow: '0px 2px 16px 0px rgba(68, 68, 68, 0.12)' }}
         >
