@@ -17,6 +17,7 @@ const SlideMenu = ({ isOpen, setIsOpen }: SlideMenuProps) => {
   };
 
   useEffect(() => {
+    if (!tokenUtils.getUserName()) window.location.reload();
     setUserName(tokenUtils.getUserName());
   }, []);
 
