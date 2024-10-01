@@ -5,6 +5,19 @@ import { MonthAllEventsType } from '@/types/hiStory';
 import MonthlyEventGroup from '@/components/hiStory/CompltedEvents/MonthlyEventGroup';
 import NavBar from '@/components/common/NavBar';
 
+const eventTitles = [
+  '완료된 첫 번째 이벤트',
+  '완료된 두 번째 이벤트',
+  '완료된 세 번째 이벤트',
+  '예술적인소프트웨어 대회',
+  '30일 건강 챌린지',
+  '연말 자선 봉사활동',
+];
+
+const getRandomEventTitle = () => {
+  return eventTitles[Math.floor(Math.random() * eventTitles.length)];
+};
+
 const mockAllEventList: MonthAllEventsType[] = [
   {
     groupByDate: '2023-09',
@@ -19,6 +32,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-09-15',
         fileUrl: 'https://example.com/image1.jpg',
         type: 'TEXT',
+        eventTitle: getRandomEventTitle(),
       },
       {
         questionId: 102,
@@ -30,6 +44,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: getRandomEventTitle(),
       },
     ],
   },
@@ -46,6 +61,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-08-10',
         fileUrl: 'https://example.com/voice_answer.mp3',
         type: 'VOICE',
+        eventTitle: getRandomEventTitle(),
       },
     ],
   },
@@ -62,6 +78,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-07-05',
         fileUrl: 'https://example.com/today_photo.jpg',
         type: 'IMAGE',
+        eventTitle: getRandomEventTitle(),
       },
       {
         questionId: 105,
@@ -73,6 +90,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-07-10',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: getRandomEventTitle(),
       },
       {
         questionId: 106,
@@ -84,6 +102,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-07-15',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: getRandomEventTitle(),
       },
       {
         questionId: 107,
@@ -95,6 +114,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-07-20',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: getRandomEventTitle(),
       },
       {
         questionId: 108,
@@ -106,6 +126,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-07-25',
         fileUrl: 'https://example.com/summer.mp3',
         type: 'VOICE',
+        eventTitle: getRandomEventTitle(),
       },
     ],
   },
@@ -122,6 +143,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-06-01',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: getRandomEventTitle(),
       },
       {
         questionId: 110,
@@ -133,6 +155,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-06-10',
         fileUrl: 'https://example.com/favorite_place.jpg',
         type: 'IMAGE',
+        eventTitle: getRandomEventTitle(),
       },
       {
         questionId: 111,
@@ -145,6 +168,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-06-15',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: getRandomEventTitle(),
       },
       {
         questionId: 112,
@@ -156,6 +180,7 @@ const mockAllEventList: MonthAllEventsType[] = [
         answeredAt: '2023-06-20',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: getRandomEventTitle(),
       },
     ],
   },

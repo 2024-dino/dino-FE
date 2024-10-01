@@ -27,6 +27,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-09-01',
       fileUrl: '',
       type: 'TEXT',
+      eventTitle: '완료된 첫 번째 이벤트',
     },
   },
   {
@@ -50,6 +51,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-09-03',
       fileUrl: 'https://example.com/sunset.jpg',
       type: 'IMAGE',
+      eventTitle: '완료된 두 번째 이벤트',
     },
   },
   {
@@ -73,6 +75,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-09-04',
       fileUrl: '',
       type: 'TEXT',
+      eventTitle: '완료된 세 번째 이벤트',
     },
   },
   {
@@ -96,6 +99,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-10-31',
       fileUrl: '',
       type: 'TEXT',
+      eventTitle: '예술적인소프트웨어 대회',
     },
   },
   {
@@ -120,6 +124,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-11-30',
       fileUrl: 'https://example.com/health-chart.jpg',
       type: 'IMAGE',
+      eventTitle: '30일 건강 챌린지',
     },
   },
   {
@@ -144,6 +149,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-12-24',
       fileUrl: 'https://example.com/volunteer-audio.mp3',
       type: 'VOICE',
+      eventTitle: '연말 자선 봉사활동',
     },
   },
 ];

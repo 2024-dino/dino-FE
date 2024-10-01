@@ -7,7 +7,6 @@ import mockEventData from '@/store/mockData';
 import { useRouter } from 'next/router';
 
 const IngPage = () => {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const router = useRouter();
   return (
     <div className="w-full h-screen items-center`">

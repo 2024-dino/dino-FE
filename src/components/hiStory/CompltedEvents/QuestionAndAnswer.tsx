@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 
+import AudioPlayer from '@/components/AudioPlayer';
 import BookMarkIcon from '@/assets/icon/BookMarkIcon';
 import ChevronRightIcon from '@/assets/icon/ChevronRightIcon.svg';
 import { EmotionType } from '@/types/emotion';
 import Image from 'next/image';
 import { QuestionContentType } from '@/types/question';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
+import moment from 'moment';
 import { useRouter } from 'next/router';
 
 interface Props {
@@ -58,15 +60,24 @@ const QuestionAndAnswer = ({
         return <p className="leading-[24px]">{question.myAnswer}</p>;
       case 'IMAGE':
         return (
-          <img
-            src={question.fileUrl}
+          <Image
+            // src={question.fileUrl}
+            src="/image/LandingFlower.png"
             alt="answer"
-            className="w-full h-[100px] object-cover mt-2"
+            width={200}
+            height={200}
           />
         );
       case 'VOICE':
         return (
-          <p className="leading-[24px]">Voice answer not implemented yet</p>
+          <div className="w-full">
+            <audio
+              src="https://chycdn.s3.ap-northeast-2.amazonaws.com/DayDream/3602426060/0/0/0/0bebb2a1-514b-4399-8b5f-10393f6d253e.mp3"
+              loop
+              controls
+              id="s3-audio-file"
+            ></audio>
+          </div>
         );
       default:
         return <p className="leading-[24px]">{question.myAnswer}</p>;
@@ -107,7 +118,9 @@ const QuestionAndAnswer = ({
 
           {question.isAnswer && (showAnswer || !!title) && (
             <>
-              <div className={`w-full flex ${isAvailBookmark ? 'mb-2' : ''}`}>
+              <div
+                className={`w-full flex ${isAvailBookmark ? 'mb-2' : 'mb-1.5'}`}
+              >
                 <div className="flex-shrink-0 w-[28px]">
                   <Image
                     src="/image/A.png"
@@ -129,10 +142,17 @@ const QuestionAndAnswer = ({
                 </div>
               ) : (
                 <div
-                  className="absolute bottom-[11px] right-4"
+                  className="absolute bottom-2 right-3.5"
                   onClick={toggleIsBookmark}
                 >
-                  <span>생성 날짜?</span>
+                  <div className="text-[#6D6D6D] text-[10px] leading-5 font-pretendard-200 flex gap-1">
+                    <span>
+                      {moment(question.answeredAt.toString()).format(
+                        'yyyy.M.D',
+                      )}
+                    </span>
+                    <span>{question.eventTitle}</span>
+                  </div>
                 </div>
               )}
             </>

@@ -2,6 +2,7 @@ import { AnswerType } from './answerType';
 
 export interface QuestionContentType {
   questionId: number;
+  eventTitle: string;
   content: string;
   isAnswer: boolean;
   myAnswer: string;

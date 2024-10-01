@@ -37,6 +37,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-09-01',
       fileUrl: '',
       type: 'TEXT',
+      eventTitle: '완료된 첫 번째 이벤트',
     },
   },
   {
@@ -60,6 +61,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-09-03',
       fileUrl: 'https://example.com/sunset.jpg',
       type: 'IMAGE',
+      eventTitle: '완료된 두 번째 이벤트',
     },
   },
   {
@@ -83,6 +85,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-09-04',
       fileUrl: '',
       type: 'TEXT',
+      eventTitle: '완료된 세 번째 이벤트',
     },
   },
   {
@@ -106,6 +109,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-10-31',
       fileUrl: '',
       type: 'TEXT',
+      eventTitle: '예술적인소프트웨어 대회',
     },
   },
   {
@@ -130,6 +134,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-11-30',
       fileUrl: 'https://example.com/health-chart.jpg',
       type: 'IMAGE',
+      eventTitle: '30일 건강 챌린지',
     },
   },
   {
@@ -154,22 +159,36 @@ const mockCompletedEventList: CompleteEventType[] = [
       answeredAt: '2023-12-24',
       fileUrl: 'https://example.com/volunteer-audio.mp3',
       type: 'VOICE',
+      eventTitle: '연말 자선 봉사활동',
     },
   },
 ];
 
-const mockEventDetailList: EventDetailTyoe[] = [
+const mockEventDetailList: EventDetailType[] = [
   {
     eventId: 1,
     title: '완료된 첫 번째 이벤트',
-    category: '일상',
+    emotion: '행복',
     eventStatus: 'termination',
     startDate: '2023-09-01',
     endDate: '2023-09-01',
     memo: '일상의 소중함을 깨달은 하루',
     fileUrl: 'https://example.com/event1.jpg',
-    step: 'level3',
-    progress: 100,
+    totalQuestionCount: 3,
+    totalAnswerCount: 3,
+    occurrenceTime: '09:00',
+    representativeQuestion: {
+      questionId: 201,
+      content: '이벤트를 통해 무엇을 배웠나요?',
+      isAnswer: true,
+      myAnswer: '새로운 경험의 중요성을 깨달았습니다.',
+      answeredAt: '2023-09-01',
+      isPriority: true,
+      questionDate: '2023-09-01',
+      fileUrl: '',
+      type: 'TEXT',
+      eventTitle: '완료된 첫 번째 이벤트',
+    },
     questionContent: [
       {
         questionId: 201,
@@ -181,6 +200,7 @@ const mockEventDetailList: EventDetailTyoe[] = [
         questionDate: '2023-09-01',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: '완료된 첫 번째 이벤트',
       },
       {
         questionId: 202,
@@ -192,21 +212,34 @@ const mockEventDetailList: EventDetailTyoe[] = [
         questionDate: '2023-09-01',
         fileUrl: 'https://example.com/family-dinner.jpg',
         type: 'IMAGE',
+        eventTitle: '완료된 첫 번째 이벤트',
       },
-      // 나머지 questionContent 항목들도 같은 방식으로 수정...
     ],
   },
   {
     eventId: 2,
     title: '완료된 두 번째 이벤트',
-    category: '여행',
+    emotion: '설렘',
     eventStatus: 'termination',
     startDate: '2023-09-02',
     endDate: '2023-09-03',
     memo: '잊지 못할 주말 여행',
     fileUrl: 'https://example.com/event2.jpg',
-    step: 'level4',
-    progress: 100,
+    totalQuestionCount: 2,
+    totalAnswerCount: 2,
+    occurrenceTime: '10:30',
+    representativeQuestion: {
+      questionId: 203,
+      content: '가장 인상 깊었던 순간은?',
+      isAnswer: true,
+      myAnswer: '석양을 바라보며 느낀 평화로움이었습니다.',
+      answeredAt: '2023-09-02',
+      isPriority: true,
+      questionDate: '2023-09-02',
+      fileUrl: 'https://example.com/sunset.jpg',
+      type: 'IMAGE',
+      eventTitle: '완료된 두 번째 이벤트',
+    },
     questionContent: [
       {
         questionId: 203,
@@ -218,6 +251,7 @@ const mockEventDetailList: EventDetailTyoe[] = [
         questionDate: '2023-09-02',
         fileUrl: 'https://example.com/sunset.jpg',
         type: 'IMAGE',
+        eventTitle: '완료된 두 번째 이벤트',
       },
       {
         questionId: 204,
@@ -229,20 +263,34 @@ const mockEventDetailList: EventDetailTyoe[] = [
         questionDate: '2023-09-03',
         fileUrl: 'https://example.com/cooking-class.mp3',
         type: 'VOICE',
+        eventTitle: '완료된 두 번째 이벤트',
       },
     ],
   },
   {
     eventId: 3,
     title: '완료된 세 번째 이벤트',
-    category: '학습',
+    emotion: '호기심',
     eventStatus: 'termination',
     startDate: '2023-09-04',
     endDate: '2023-09-04',
     memo: '새로운 지식의 발견',
     fileUrl: 'https://example.com/event3.jpg',
-    step: 'level2',
-    progress: 100,
+    totalQuestionCount: 1,
+    totalAnswerCount: 1,
+    occurrenceTime: '14:00',
+    representativeQuestion: {
+      questionId: 205,
+      content: '새롭게 알게 된 사실이 있나요?',
+      isAnswer: true,
+      myAnswer: '인공지능의 윤리적 측면에 대해 깊이 있게 배웠습니다.',
+      answeredAt: '2023-09-04',
+      isPriority: true,
+      questionDate: '2023-09-04',
+      fileUrl: '',
+      type: 'TEXT',
+      eventTitle: '완료된 세 번째 이벤트',
+    },
     questionContent: [
       {
         questionId: 205,
@@ -254,25 +302,25 @@ const mockEventDetailList: EventDetailTyoe[] = [
         questionDate: '2023-09-04',
         fileUrl: '',
         type: 'TEXT',
+        eventTitle: '완료된 세 번째 이벤트',
       },
     ],
   },
 ];
 
-type EventStatus = 'termination' | 'execution';
-type Step = 'level1' | 'level2' | 'level3' | 'level4' | 'level5';
-
-interface EventDetailTyoe {
+interface EventDetailType {
   eventId: number;
   title: string;
-  category: string;
-  eventStatus: EventStatus;
+  emotion: string;
+  eventStatus: 'termination' | 'execution';
   startDate: string; // Format: 'yyyy-MM-dd'
   memo: string;
   endDate: string; // Format: 'yyyy-MM-dd'
   fileUrl: string;
-  step: Step;
-  progress: number;
+  totalQuestionCount: number;
+  totalAnswerCount: number;
+  occurrenceTime: string; // Format: 'HH:mm'
+  representativeQuestion?: QuestionContentType | null;
   questionContent: QuestionContentType[];
 }
 
@@ -281,7 +329,7 @@ const EventDetailPage = () => {
   const { eventId } = router.query;
   const [event, setEvent] = useState<CompleteEventType | null>(null);
   const [eventList, setEventList] = useState<CompleteEventType[]>([]);
-  const [eventDetail, setEventDetail] = useState<EventDetailTyoe | null>(null);
+  const [eventDetail, setEventDetail] = useState<EventDetailType | null>(null);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async (eventId: number) => {
