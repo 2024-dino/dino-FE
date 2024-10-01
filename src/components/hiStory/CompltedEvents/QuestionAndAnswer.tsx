@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import BookMarkIcon from '@/assets/icon/BookMarkIcon';
 import ChevronRightIcon from '@/assets/icon/ChevronRightIcon.svg';
 import { EmotionType } from '@/types/emotion';
+import Image from 'next/image';
 import { QuestionContentType } from '@/types/question';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
 import { useRouter } from 'next/router';
@@ -92,26 +93,30 @@ const QuestionAndAnswer = ({
         <div className="w-full flex flex-col items-start justify-center px-[10px]">
           <div className="w-full flex">
             <div className="flex-shrink-0 w-[28px]">
-              <span className="font-edensor text-[#BAD7EC] text-[24px] leading-[24px]">
-                Q.
-              </span>
+              <Image
+                src="/image/Q.png"
+                alt="question-image"
+                width={22}
+                height={24}
+              />
             </div>
-            <span className="font-pretendard-200 text-[14px] flex-grow leading-[24px]">
+            <span className="font-pretendard-200 self-center text-[14px] flex-grow leading-[24px]">
               {question.content}
             </span>
           </div>
 
           {question.isAnswer && (showAnswer || !!title) && (
             <>
-              <div
-                className={`w-full flex mt-1 ${isAvailBookmark ? 'mb-2' : ''}`}
-              >
+              <div className={`w-full flex ${isAvailBookmark ? 'mb-2' : ''}`}>
                 <div className="flex-shrink-0 w-[28px]">
-                  <span className="font-edensor text-[#BAD7EC] text-[24px] leading-[24px]">
-                    A.
-                  </span>
+                  <Image
+                    src="/image/A.png"
+                    alt="answer-image"
+                    width={22}
+                    height={24}
+                  />
                 </div>
-                <div className="flex-grow font-pretendard-200 text-[14px]">
+                <div className="flex-grow self-center font-pretendard-200 text-[14px]">
                   {renderAnswer(question.type!)}
                 </div>
               </div>
