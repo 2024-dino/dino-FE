@@ -453,14 +453,21 @@ const EventDetailPage = () => {
           </div>
         </div>
 
+        {/* 대표 질문 */}
         <QuestionAndAnswer
           question={event.representativeQuestion}
           isRepresent={true}
+          emotion={event.emotion as EmotionType}
+          isAvailBookmark={true}
         />
 
         <div className="mt-10 w-full">
           {eventDetail?.questionContent.map((question) => (
-            <QuestionAndAnswer key={question.questionId} question={question} />
+            <QuestionAndAnswer
+              key={question.questionId}
+              question={question}
+              isAvailBookmark={true}
+            />
           ))}
         </div>
       </div>
