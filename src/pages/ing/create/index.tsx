@@ -3,7 +3,7 @@ import FunnelDispenser from '@/components/ing/create/FunnelDispenser';
 import Header from '@/components/Day/Header';
 import SlideMenu from '@/components/Day/SideMenu';
 import { EventPostRequest } from '@/types/event';
-import React, { createContext, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 export interface EventContextType {
   eventInfo: EventPostRequest;
@@ -28,7 +28,6 @@ const EventCreatePage = () => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [eventInfo, setEventInfo] = useState<EventPostRequest>({
     title: '',
-    category: '', //테마 (카테고리)
     startDate: '',
     endDate: '',
     memo: '', //추가 메모
