@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface Props {
   handleStart: () => void;
 }
@@ -10,37 +12,45 @@ const Landing = ({ handleStart }: Props) => {
         `,
   };
   const textStyle = {
-    color: 'rgba(138, 186, 221, 0.60)',
+    color: 'rgba(138, 186, 221, 0.6)',
   };
   return (
     <div
-      className="h-screen max-h-screen flex flex-col justify-between p-4"
+      className="h-screen max-h-screen flex flex-col justify-between items-center"
       style={backgroundStyle}
     >
       {/* 중앙 컨텐츠 */}
-      <div className="flex flex-col items-center text-center">
-        <div className="text-[52px] font-edensor mb-4" style={textStyle}>
-          Daydream
+      <div className="flex flex-col items-center text-center flex-grow mt-48">
+        <div className="relative">
+          <div
+            className="absolute top-[-40px] left-1/2 transform -translate-x-1/2 text-[52px] font-edensor z-10"
+            style={textStyle}
+          >
+            Daydream
+          </div>
+          <Image
+            alt="landing-flower"
+            width={213}
+            height={212}
+            src="/image/LandingFlower.png"
+          />
         </div>
-        <img
-          src="/path-to-your-flower-image.png"
-          alt="Flower"
-          className="w-40 h-40 object-contain mb-4"
-        />
-        <div className="text-[#8ABADD] text-[20px] flex">
+        <div className="text-[#8ABADD] text-[20px] flex mt-5">
           <span className="font-pretendard-500">기다림이 설렘</span>
           <span className="font-pretendard-300">으로 피어날 때</span>
         </div>
       </div>
 
       {/* 하단 버튼 */}
-      <div className="w-full">
-        <button
-          onClick={handleStart}
-          className="w-full bg-white text-black shadow-md"
-        >
-          시작하기
-        </button>
+      <div
+        className="w-[calc(100%-40px)] rounded-[10px] h-[52px] flex text-center items-center justify-center cursor-pointer mb-8"
+        style={{
+          background: 'rgba(255, 255, 255, 0.60)',
+          boxShadow: '0px 2px 20px 0px rgba(136, 136, 136, 0.12)',
+        }}
+        onClick={handleStart}
+      >
+        <span className="text-[16px] font-pretendard-500">시작하기</span>
       </div>
     </div>
   );
