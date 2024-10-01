@@ -30,6 +30,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     representativeQuestion: {
       questionId: 201,
       content: '이벤트를 통해 무엇을 배웠나요?',
+      isPriority: false,
       isAnswer: true,
       myAnswer: '새로운 경험의 중요성을 깨달았습니다.',
     },
@@ -48,6 +49,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     representativeQuestion: {
       questionId: 202,
       content: '가장 인상 깊었던 순간은?',
+      isPriority: true,
       isAnswer: true,
       myAnswer: '석양을 바라보며 느낀 평화로움이었습니다.',
     },
@@ -66,6 +68,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     representativeQuestion: {
       questionId: 203,
       content: '새롭게 알게 된 사실이 있나요?',
+      isPriority: false,
       isAnswer: true,
       myAnswer: '내가 어케 알아~',
     },
@@ -84,6 +87,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     representativeQuestion: {
       questionId: 204,
       content: '이번 달 가장 인상 깊었던 책은?',
+      isPriority: false,
       isAnswer: true,
       myAnswer: '『사피엔스』, 인류 역사에 대한 새로운 시각을 얻었습니다.',
     },
@@ -102,6 +106,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     representativeQuestion: {
       questionId: 205,
       content: '한 달간의 변화 중 가장 큰 것은?',
+      isPriority: false,
       isAnswer: true,
       myAnswer:
         '아침 기상 시간이 규칙적으로 변했고, 전반적인 컨디션이 좋아졌습니다.',
@@ -121,6 +126,7 @@ const mockCompletedEventList: CompleteEventType[] = [
     representativeQuestion: {
       questionId: 206,
       content: '봉사활동을 통해 느낀 점은?',
+      isPriority: false,
       isAnswer: true,
       myAnswer:
         '작은 도움이 모여 큰 변화를 만들 수 있다는 것을 직접 경험했습니다.',

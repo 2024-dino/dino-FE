@@ -1,6 +1,7 @@
 import { CompleteEventType, QuestionContentType } from '@/types/hiStory';
 import { useEffect, useState } from 'react';
 
+import BookmarkIcon from '@/assets/icon/BookMarkIcon';
 import { EmotionType } from '@/types/emotion';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
 
@@ -20,9 +21,16 @@ const QuestionAndAnswer = ({
   isAvailBookmark = false,
 }: Props) => {
   const [showAnswer, setShowAnswer] = useState(false);
+  const [isBookmark, setIsBookmark] = useState(false);
+
+  const toggleIsBookmark = (e: React.MouseEvent) => {
+    e.stopPropagation(); // 이벤트 전파 중지
+    setIsBookmark(!isBookmark);
+  };
 
   useEffect(() => {
     setShowAnswer(!!title);
+    setIsBookmark(question.isPriority);
   }, [question, title]);
 
   const backgroundStyle =
@@ -74,7 +82,7 @@ const QuestionAndAnswer = ({
       )}
 
       <div
-        className={`w-full h-auto py-4 mb-2.5 self-center rounded-[10px]`}
+        className={`w-full h-auto mb-2.5 py-4 self-center rounded-[10px] relative`}
         style={backgroundStyle}
         onClick={() => !title && setShowAnswer(!showAnswer)}
       >
@@ -92,7 +100,9 @@ const QuestionAndAnswer = ({
 
           {question.isAnswer && (showAnswer || !!title) && (
             <>
-              <div className="w-full flex mt-2">
+              <div
+                className={`w-full flex mt-1 ${isAvailBookmark ? 'mb-2' : ''}`}
+              >
                 <div className="flex-shrink-0 w-[34px]">
                   <span className="font-pretendard-300 text-[#BAD7EC] text-[24px] leading-[24px]">
                     A.
@@ -102,7 +112,14 @@ const QuestionAndAnswer = ({
                   {renderAnswer(question.type!)}
                 </div>
               </div>
-              {isAvailBookmark && <div className="self-end">구름~</div>}
+              {isAvailBookmark && (
+                <div
+                  className="absolute bottom-[11px] right-4"
+                  onClick={toggleIsBookmark}
+                >
+                  <BookmarkIcon isMarked={isBookmark} />
+                </div>
+              )}
             </>
           )}
         </div>
