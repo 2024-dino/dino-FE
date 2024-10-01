@@ -1,5 +1,5 @@
 // main/index
-
+import React from 'react';
 import DateChanger from '@/components/DateChanger';
 import EventElement from '@/components/eventManage/EventElement';
 import EventList from '@/components/Day/EventList';
