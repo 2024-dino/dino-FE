@@ -11,7 +11,7 @@
 
 /* 캘린더 상단의 네비게이션 (년도, 월 선택) 영역 스타일 */
 .reactCalendar :global(.react-calendar__navigation) {
-  @apply flex justify-center w-full mt-[28px] mb-[14px];
+  @apply flex justify-center w-full mt-[28px] mb-[17px];
   font-size: 20px;
   color: rgba(0, 0, 0, 0.60);
   line-height: 28px;
@@ -53,8 +53,8 @@
 
 /* 월별 뷰의 요일 표시 영역 스타일 */
 .reactCalendar :global(.react-calendar__month-view__weekdays) {
-  @apply uppercase text-[12px] text-center h-[40px] items-center;
-  width: calc(100% - 50px) !important;
+  @apply uppercase text-[12px] text-center h-[43px] items-center;
+  width: calc(100% - 52px) !important;
   margin: 0 auto;
   line-height: normal;
 }
@@ -83,7 +83,7 @@
 
 /* 월별 뷰의 날짜 컨테이너 스타일 */
 .reactCalendar :global(.react-calendar__month-view__days) {
-  @apply w-[calc(100%-50px)] font-pretendard-300;
+  @apply w-[calc(100%-52px)] font-pretendard-300;
   margin: 0 auto;
 }
 

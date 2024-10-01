@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import BookmarkIcon from '@/assets/icon/BookMarkIcon';
+import BookMarkIcon from '@/assets/icon/BookMarkIcon';
 import ChevronRightIcon from '@/assets/icon/ChevronRightIcon.svg';
 import { EmotionType } from '@/types/emotion';
 import { QuestionContentType } from '@/types/question';
@@ -92,7 +92,7 @@ const QuestionAndAnswer = ({
         <div className="w-full flex flex-col items-start justify-center px-[10px]">
           <div className="w-full flex">
             <div className="flex-shrink-0 w-[28px]">
-              <span className="font-pretendard-300 text-[#BAD7EC] text-[24px] leading-[24px]">
+              <span className="font-edensor text-[#BAD7EC] text-[24px] leading-[24px]">
                 Q.
               </span>
             </div>
@@ -107,7 +107,7 @@ const QuestionAndAnswer = ({
                 className={`w-full flex mt-1 ${isAvailBookmark ? 'mb-2' : ''}`}
               >
                 <div className="flex-shrink-0 w-[28px]">
-                  <span className="font-pretendard-300 text-[#BAD7EC] text-[24px] leading-[24px]">
+                  <span className="font-edensor text-[#BAD7EC] text-[24px] leading-[24px]">
                     A.
                   </span>
                 </div>
@@ -120,7 +120,7 @@ const QuestionAndAnswer = ({
                   className="absolute bottom-[11px] right-4"
                   onClick={toggleIsBookmark}
                 >
-                  <BookmarkIcon isMarked={isBookmark} />
+                  <BookMarkIcon isMarked={isBookmark} />
                 </div>
               ) : (
                 <div
@@ -147,7 +147,7 @@ const QuestionAndAnswer = ({
           <div className="w-full flex flex-col items-start justify-center px-[10px]">
             <div className="w-full flex mt-1">
               <div className="flex-shrink-0 w-[28px]">
-                <span className="font-pretendard-300 text-[#BAD7EC] text-[24px] leading-[24px]">
+                <span className="font-edensor text-[#BAD7EC] text-[24px] leading-[24px]">
                   A.
                 </span>
               </div>

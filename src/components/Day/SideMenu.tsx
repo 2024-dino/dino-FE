@@ -46,14 +46,14 @@ const SlideMenu = ({ isOpen, setIsOpen }: SlideMenuProps) => {
           <div className="text-[#333] font-pretendard text-2xl font-normal tracking-[-0.3px]">
             {userName ? `${userName}님` : ''}
           </div>
-          <div className="flex justify-between items-center gap-2">
+          {/* <div className="flex justify-between items-center gap-2">
             <div className="text-[#888] font-pretendard-300 text-xs leading-5 tracking-[-0.48px]">
               로그인
             </div>
             <div className="text-[#888] font-pretendard-300 text-xs leading-5 tracking-[-0.48px]">
               카카오계정
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="w-full h-[1px] mb-8 bg-gray-300" />
         <div className="">

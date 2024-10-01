@@ -2,7 +2,7 @@ interface Props {
   isMarked: boolean;
 }
 
-const BookmarkIcon = ({ isMarked }: Props) => {
+const BookMarkIcon = ({ isMarked }: Props) => {
   return (
     <div>
       {isMarked ? (
@@ -42,4 +42,4 @@ const BookmarkIcon = ({ isMarked }: Props) => {
   );
 };
 
-export default BookmarkIcon;
+export default BookMarkIcon;
