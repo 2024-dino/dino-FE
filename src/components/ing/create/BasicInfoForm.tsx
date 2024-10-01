@@ -7,7 +7,7 @@ interface StepProps {
 
 const BasicInfoForm = ({ setStep }: StepProps) => {
   const { eventInfo, setEventInfo } = useEventContext();
-  const dateRegex = /^\d{4}\/(?:0[1-9]|1[0-2])\/(?:0[1-9]|[12]\d|3[01])$/;
+  const dateRegex = /^\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01])$/;
 
   const isValidDateFormat = (dateString: string): boolean => {
     // 형식 검사
@@ -91,7 +91,7 @@ const BasicInfoForm = ({ setStep }: StepProps) => {
             id="eventDate"
             type="text"
             value={eventInfo.endDate}
-            placeholder="YYYY/MM/DD"
+            placeholder="YYYY-MM-DD"
             onChange={(e) =>
               setEventInfo({ ...eventInfo, endDate: e.target.value })
             }
