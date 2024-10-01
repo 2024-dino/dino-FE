@@ -1,4 +1,4 @@
-import KakaoLoginButton from '@/components/login/KakaoLoginButton';
+import KakaoLogin from '@/components/login/KakaoLogin';
 import Landing from '@/components/login/Landing';
 import { useState } from 'react';
 
@@ -11,7 +11,7 @@ const LoginPage = () => {
 
   return (
     <div className="w-full">
-      {isLanding ? <Landing handleStart={handleStart} /> : <KakaoLoginButton />}
+      {isLanding ? <Landing handleStart={handleStart} /> : <KakaoLogin />}
     </div>
   );
 };
