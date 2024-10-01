@@ -2,14 +2,13 @@ import { useEffect, useState } from 'react';
 
 import BookmarkIcon from '@/assets/icon/BookMarkIcon';
 import ChevronRightIcon from '@/assets/icon/ChevronRightIcon.svg';
-import { CompleteEventType } from '@/types/hiStory';
 import { EmotionType } from '@/types/emotion';
 import { QuestionContentType } from '@/types/question';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
 import { useRouter } from 'next/router';
 
 interface Props {
-  question: QuestionContentType | CompleteEventType['representativeQuestion'];
+  question: QuestionContentType;
   title?: string; // /dream 페이지에서 사용
   isRepresent?: boolean;
   emotion?: EmotionType;

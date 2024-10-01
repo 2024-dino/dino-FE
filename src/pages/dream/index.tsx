@@ -258,7 +258,7 @@ const DreamPage = () => {
           eventList={eventList}
           setSelectedDate={handleDateSelect}
         />
-        <div className="mt-[50px] w-full gap-5 flex flex-col">
+        <div className="mt-[80px] w-full gap-5 flex flex-col">
           {filteredEvents.map((event) => (
             <QuestionAndAnswer
               key={event.title}
