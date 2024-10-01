@@ -20,7 +20,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: '매우 좋습니다!',
         isPriority: true,
-        questionDate: '2023-09-15', // 예시 날짜
+        questionDate: '2023-09-15',
+        answeredAt: '2023-09-15',
         fileUrl: 'https://example.com/image1.jpg',
         type: 'TEXT',
       },
@@ -30,7 +31,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: false,
         myAnswer: '',
         isPriority: false,
-        questionDate: '2023-09-20', // 예시 날짜
+        questionDate: '2023-09-20',
+        answeredAt: '',
         fileUrl: '',
         type: 'TEXT',
       },
@@ -45,7 +47,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: 'voice_answer.mp3',
         isPriority: true,
-        questionDate: '2023-08-10', // 예시 날짜
+        questionDate: '2023-08-10',
+        answeredAt: '2023-08-10',
         fileUrl: 'https://example.com/voice_answer.mp3',
         type: 'VOICE',
       },
@@ -60,7 +63,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: 'today_photo.jpg',
         isPriority: false,
-        questionDate: '2023-07-05', // 예시 날짜
+        questionDate: '2023-07-05',
+        answeredAt: '2023-07-05',
         fileUrl: 'https://example.com/today_photo.jpg',
         type: 'IMAGE',
       },
@@ -70,7 +74,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: '제주도로 가족 여행을 갈 예정입니다.',
         isPriority: true,
-        questionDate: '2023-07-10', // 예시 날짜
+        questionDate: '2023-07-10',
+        answeredAt: '2023-07-10',
         fileUrl: '',
         type: 'TEXT',
       },
@@ -80,7 +85,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: '요가를 시작했어요. 매일 아침 30분씩 하고 있습니다.',
         isPriority: false,
-        questionDate: '2023-07-15', // 예시 날짜
+        questionDate: '2023-07-15',
+        answeredAt: '2023-07-15',
         fileUrl: '',
         type: 'TEXT',
       },
@@ -90,7 +96,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: '시원한 물냉면이요. 특히 더운 날 먹으면 정말 좋아요.',
         isPriority: false,
-        questionDate: '2023-07-20', // 예시 날짜
+        questionDate: '2023-07-20',
+        answeredAt: '2023-07-20',
         fileUrl: '',
         type: 'TEXT',
       },
@@ -100,7 +107,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: 'summer.mp3',
         isPriority: false,
-        questionDate: '2023-07-25', // 예시 날짜
+        questionDate: '2023-07-25',
+        answeredAt: '2023-07-25',
         fileUrl: 'https://example.com/summer.mp3',
         type: 'VOICE',
       },
@@ -115,7 +123,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: '매일 30분 이상 책 읽기',
         isPriority: true,
-        questionDate: '2023-06-01', // 예시 날짜
+        questionDate: '2023-06-01',
+        answeredAt: '2023-06-01',
         fileUrl: '',
         type: 'TEXT',
       },
@@ -125,7 +134,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: 'favorite_place.jpg',
         isPriority: false,
-        questionDate: '2023-06-10', // 예시 날짜
+        questionDate: '2023-06-10',
+        answeredAt: '2023-06-10',
         fileUrl: 'https://example.com/favorite_place.jpg',
         type: 'IMAGE',
       },
@@ -136,7 +146,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         myAnswer:
           '베이킹을 처음 해봤어요. 쿠키를 만들었는데 생각보다 맛있었습니다!',
         isPriority: false,
-        questionDate: '2023-06-15', // 예시 날짜
+        questionDate: '2023-06-15',
+        answeredAt: '2023-06-15',
         fileUrl: '',
         type: 'TEXT',
       },
@@ -146,7 +157,8 @@ const mockAllEventList: MonthAllEventsType[] = [
         isAnswer: true,
         myAnswer: '동료가 어려운 업무를 도와줘서 정말 고마웠어요.',
         isPriority: true,
-        questionDate: '2023-06-20', // 예시 날짜
+        questionDate: '2023-06-20',
+        answeredAt: '2023-06-20',
         fileUrl: '',
         type: 'TEXT',
       },
@@ -173,6 +185,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       isAnswer: true,
       myAnswer: '새로운 경험의 중요성을 깨달았습니다.',
       questionDate: '2023-09-01',
+      answeredAt: '2023-09-01',
       fileUrl: '',
       type: 'TEXT',
     },
@@ -195,6 +208,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       isAnswer: true,
       myAnswer: '석양을 바라보며 느낀 평화로움이었습니다.',
       questionDate: '2023-09-03',
+      answeredAt: '2023-09-03',
       fileUrl: 'https://example.com/sunset.jpg',
       type: 'IMAGE',
     },
@@ -217,6 +231,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       isAnswer: true,
       myAnswer: '내가 어케 알아~',
       questionDate: '2023-09-04',
+      answeredAt: '2023-09-04',
       fileUrl: '',
       type: 'TEXT',
     },
@@ -239,6 +254,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       isAnswer: true,
       myAnswer: '『사피엔스』, 인류 역사에 대한 새로운 시각을 얻었습니다.',
       questionDate: '2023-10-31',
+      answeredAt: '2023-10-31',
       fileUrl: '',
       type: 'TEXT',
     },
@@ -262,6 +278,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       myAnswer:
         '아침 기상 시간이 규칙적으로 변했고, 전반적인 컨디션이 좋아졌습니다.',
       questionDate: '2023-11-30',
+      answeredAt: '2023-11-30',
       fileUrl: 'https://example.com/health-chart.jpg',
       type: 'IMAGE',
     },
@@ -285,6 +302,7 @@ const mockCompletedEventList: CompleteEventType[] = [
       myAnswer:
         '작은 도움이 모여 큰 변화를 만들 수 있다는 것을 직접 경험했습니다.',
       questionDate: '2023-12-24',
+      answeredAt: '2023-12-24',
       fileUrl: 'https://example.com/volunteer-audio.mp3',
       type: 'VOICE',
     },

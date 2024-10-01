@@ -252,7 +252,7 @@ const DreamPage = () => {
             'linear-gradient(168deg, rgba(251, 243, 231, 0.20) 0%, rgba(185, 206, 215, 0.20) 47.11%, rgba(235, 219, 244, 0.20) 100%), #FFF',
           boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
         }}
-        className="flex-1 overflow-y-auto pb-[68px]"
+        className="flex-1 overflow-y-auto pb-[68px] mb-8"
       >
         <CustomCalendar
           eventList={eventList}
@@ -264,6 +264,7 @@ const DreamPage = () => {
               key={event.title}
               question={event as unknown as QuestionContentType}
               title={event.title}
+              isAvailBookmark={true}
             />
           ))}
         </div>

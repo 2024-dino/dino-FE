@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 
 import BookmarkIcon from '@/assets/icon/BookMarkIcon';
+import ChevronRightIcon from '@/assets/icon/ChevronRightIcon.svg';
 import { CompleteEventType } from '@/types/hiStory';
 import { EmotionType } from '@/types/emotion';
 import { QuestionContentType } from '@/types/question';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
+import { useRouter } from 'next/router';
 
 interface Props {
   question: QuestionContentType | CompleteEventType['representativeQuestion'];
-  title?: string;
+  title?: string; // /dream 페이지에서 사용
   isRepresent?: boolean;
   emotion?: EmotionType;
   isAvailBookmark?: boolean;
@@ -21,6 +23,7 @@ const QuestionAndAnswer = ({
   emotion,
   isAvailBookmark = false,
 }: Props) => {
+  const router = useRouter();
   const [showAnswer, setShowAnswer] = useState(false);
   const [isBookmark, setIsBookmark] = useState(false);
 
@@ -89,7 +92,7 @@ const QuestionAndAnswer = ({
       >
         <div className="w-full flex flex-col items-start justify-center px-[10px]">
           <div className="w-full flex">
-            <div className="flex-shrink-0 w-[34px]">
+            <div className="flex-shrink-0 w-[28px]">
               <span className="font-pretendard-300 text-[#BAD7EC] text-[24px] leading-[24px]">
                 Q.
               </span>
@@ -104,7 +107,7 @@ const QuestionAndAnswer = ({
               <div
                 className={`w-full flex mt-1 ${isAvailBookmark ? 'mb-2' : ''}`}
               >
-                <div className="flex-shrink-0 w-[34px]">
+                <div className="flex-shrink-0 w-[28px]">
                   <span className="font-pretendard-300 text-[#BAD7EC] text-[24px] leading-[24px]">
                     A.
                   </span>
@@ -132,6 +135,33 @@ const QuestionAndAnswer = ({
           )}
         </div>
       </div>
+
+      {/* /dream 페이지에서 답변하지 않은 경우 메인으로 라우팅 하는 UI 필요 */}
+      {title && !question.isAnswer && (
+        <div
+          className={`w-full h-auto mb-2.5 py-[13px] self-center rounded-[10px]`}
+          style={backgroundStyle}
+          onClick={() => {
+            router.push('/');
+          }}
+        >
+          <div className="w-full flex flex-col items-start justify-center px-[10px]">
+            <div className="w-full flex mt-1">
+              <div className="flex-shrink-0 w-[28px]">
+                <span className="font-pretendard-300 text-[#BAD7EC] text-[24px] leading-[24px]">
+                  A.
+                </span>
+              </div>
+              <div className="flex-grow font-pretendard-200 text-[14px] text-[#888] leading-5">
+                <div className="flex justify-between">
+                  <span>답변 작성하러 가기</span>
+                  <ChevronRightIcon />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
