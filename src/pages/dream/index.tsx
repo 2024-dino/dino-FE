@@ -6,7 +6,6 @@ import Header from '@/components/Day/Header';
 import NavBar from '@/components/common/NavBar';
 import QuestionAndAnswer from '@/components/hiStory/CompltedEvents/QuestionAndAnswer';
 import { QuestionContentType } from '@/types/question';
-import SlideMenu from '@/components/Day/SideMenu';
 import moment from 'moment';
 
 export interface MonthEventType {
@@ -29,7 +28,6 @@ export interface EventContent {
 }
 
 const DreamPage = () => {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [eventList, setEventList] = useState<MonthEventType[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date | string>(
     moment().format('YYYY-MM-DD'),
@@ -243,17 +241,16 @@ const DreamPage = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-screen">
-      <Header onClick={() => setIsSideMenuOpen(true)} />
-      <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
-      <div
-        style={{
-          background:
-            'linear-gradient(168deg, rgba(251, 243, 231, 0.20) 0%, rgba(185, 206, 215, 0.20) 47.11%, rgba(235, 219, 244, 0.20) 100%), #FFF',
-          boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
-        }}
-        className="flex-1 overflow-y-auto pb-[68px] mb-8"
-      >
+    <div
+      className="flex flex-col w-full h-screen"
+      style={{
+        background:
+          'linear-gradient(168deg, rgba(251, 243, 231, 0.20) 0%, rgba(185, 206, 215, 0.20) 47.11%, rgba(235, 219, 244, 0.20) 100%), #FFF',
+        boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
+      }}
+    >
+      <Header />
+      <div className="flex-1 overflow-y-auto pb-[68px] mb-8">
         <CustomCalendar
           eventList={eventList}
           setSelectedDate={handleDateSelect}

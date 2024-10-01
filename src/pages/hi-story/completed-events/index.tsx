@@ -2,7 +2,6 @@ import { CompleteEventType } from '@/types/hiStory';
 import CompletedEventThumbnail from '@/components/hiStory/CompletedEventThumbnail';
 import Header from '@/components/Day/Header';
 import NavBar from '@/components/common/NavBar';
-import SlideMenu from '@/components/Day/SideMenu';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -150,7 +149,6 @@ const mockCompletedEventList: CompleteEventType[] = [
 ];
 
 const CompletedEventsPage = () => {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [completedEventList, setCompletedEventList] = useState(
     mockCompletedEventList,
   );
@@ -169,9 +167,7 @@ const CompletedEventsPage = () => {
         boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
       }}
     >
-      <Header onClick={() => setIsSideMenuOpen(true)} />
-      <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
-
+      <Header />
       <div className="mt-9">
         <CompletedEventThumbnail
           eventList={completedEventList}

@@ -4,7 +4,6 @@ import Header from '@/components/Day/Header';
 import { MonthAllEventsType } from '@/types/hiStory';
 import MonthlyEventGroup from '@/components/hiStory/CompltedEvents/MonthlyEventGroup';
 import NavBar from '@/components/common/NavBar';
-import SlideMenu from '@/components/Day/SideMenu';
 
 const mockAllEventList: MonthAllEventsType[] = [
   {
@@ -163,7 +162,6 @@ const mockAllEventList: MonthAllEventsType[] = [
 ];
 
 const SavedQuestionsPage = () => {
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [allEventList, setAllEventList] = useState<MonthAllEventsType[]>([]);
 
   const fetchData = async () => {
@@ -184,9 +182,7 @@ const SavedQuestionsPage = () => {
         boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
       }}
     >
-      <Header onClick={() => setIsSideMenuOpen(true)} />
-      <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
-
+      <Header />
       <div className="flex-1 overflow-y-auto pb-[68px] mb-8">
         {allEventList.map((event) => (
           <MonthlyEventGroup key={event.groupByDate.toString()} event={event} />

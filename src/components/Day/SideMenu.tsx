@@ -60,13 +60,13 @@ const SlideMenu = ({ isOpen, setIsOpen }: SlideMenuProps) => {
           <ul className="space-y-2">
             <div className="flex h-14 px-5 py-3 rounded bg-white justify-between items-center self-stretch">
               <div className="text-[#888] font-pretendard-300 text-xs leading-5 tracking-[-0.48px]">
-                내 정보 수정하기
+                이름 변경하기
               </div>
               <Image alt="penImg" width={32} height={32} src="/image/pen.png" />
             </div>
             <div className="flex h-14 px-5 py-3 rounded bg-white justify-between items-center self-stretch">
               <div className="text-[#888] font-pretendard-300 text-xs leading-5 tracking-[-0.48px]">
-                질문 알람받기
+                질문 알람 받기
               </div>
               <Image
                 alt="penImg"

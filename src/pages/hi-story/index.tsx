@@ -7,7 +7,6 @@ import Header from '@/components/Day/Header';
 import NavBar from '@/components/common/NavBar';
 import { QuestionContentType } from '@/types/question';
 import SavedQuestionThumbnail from '@/components/hiStory/SavedQuestionThumbnail';
-import SlideMenu from '@/components/Day/SideMenu';
 import { useRouter } from 'next/router';
 
 const mockAllEventList: MonthAllEventsType[] = [
@@ -311,7 +310,6 @@ const mockCompletedEventList: CompleteEventType[] = [
 
 const HiStoryPage = () => {
   const router = useRouter();
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [allEventList, setAllEventList] = useState<MonthAllEventsType[]>([]);
   const [completedEventList, setCompletedEventList] = useState<
     CompleteEventType[]
@@ -349,8 +347,7 @@ const HiStoryPage = () => {
         boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
       }}
     >
-      <Header onClick={() => setIsSideMenuOpen(true)} />
-      <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
+      <Header />
 
       <div className="flex-1 overflow-y-auto pb-[68px] mb-8">
         <div className="flex flex-col gap-8 mt-8">

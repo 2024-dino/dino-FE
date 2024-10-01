@@ -13,7 +13,6 @@ import PrevTriButtonIcon from '@/assets/icon/PrevTriButtonIcon';
 import ProgressBar from '@/components/Day/ProgressBar';
 import QuestionAndAnswer from '@/components/hiStory/CompltedEvents/QuestionAndAnswer';
 import { QuestionContentType } from '@/types/question';
-import SlideMenu from '@/components/Day/SideMenu';
 import { useRouter } from 'next/router';
 
 const mockCompletedEventList: CompleteEventType[] = [
@@ -262,20 +261,6 @@ const mockEventDetailList: EventDetailTyoe[] = [
 
 type EventStatus = 'termination' | 'execution';
 type Step = 'level1' | 'level2' | 'level3' | 'level4' | 'level5';
-type QuestionType = 'TEXT' | 'VOICE' | 'IMAGE';
-
-interface QuestionContent {
-  questionId: number;
-  questionDate: string; // Format: 'yyyy-MM-dd'
-  isAnswer: boolean;
-  sequence: number;
-  isPriority: boolean;
-  step: Step;
-  content: string;
-  myAnswer: string;
-  fileUrl: string;
-  type: QuestionType;
-}
 
 interface EventDetailTyoe {
   eventId: number;
@@ -293,7 +278,6 @@ interface EventDetailTyoe {
 
 const EventDetailPage = () => {
   const router = useRouter();
-  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const { eventId } = router.query;
   const [event, setEvent] = useState<CompleteEventType | null>(null);
   const [eventList, setEventList] = useState<CompleteEventType[]>([]);
@@ -344,9 +328,7 @@ const EventDetailPage = () => {
       className="flex flex-col w-full h-screen"
       style={getBackGroundStyle(event.emotion as EmotionType)}
     >
-      <Header onClick={() => setIsSideMenuOpen(true)} />
-      <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
-
+      <Header />
       <div className="flex-1 overflow-y-auto pb-[68px] mb-8 flex flex-col items-center">
         <div className="w-[calc(100%-40px)] max-w-2xl">
           <div className="flex items-center justify-between my-4">
