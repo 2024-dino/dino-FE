@@ -1,16 +1,17 @@
 // main/index
 import React, { Suspense } from 'react';
+
+import { EmotionType } from '@/types/emotion';
+import EventPage from '@/components/Day/EventPage';
 import Header from '../../components/Day/Header';
 import NavBar from '@/components/common/NavBar';
-import SlideMenu from '@/components/Day/SideMenu';
-import { useState } from 'react';
-import { useGetEvents } from '@/hooks/api/useEvent';
-import EventPage from '@/components/Day/EventPage';
-import { getBackGroundStyle } from '@/utils/emotionColor';
-import { EmotionType } from '@/types/emotion';
 import NextTriButtonIcon from '@/assets/icon/NextTriButtonIcon';
 import PrevTriButtonIcon from '@/assets/icon/PrevTriButtonIcon';
+import SlideMenu from '@/components/Day/SideMenu';
+import { getBackGroundStyle } from '@/utils/emotionColor';
+import { useGetEvents } from '@/hooks/api/useEvent';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 interface Props {}
 
@@ -56,11 +57,11 @@ export default function MainPage<Props>({}) {
                 className="font-pretendard-300 text-[20px] text-center"
                 style={{ color: 'rgba(0,0,0,0.60)' }}
               >
-                {data?.data?.[currentIndex].title}
+                {data?.data?.[currentIndex]?.title}
               </span>
               <span className="font-pretendard-200 text-[12px] text-[#969A9C] text-center">
-                {data?.data?.[currentIndex].startDate.toString()} -{' '}
-                {data?.data?.[currentIndex].endDate.toString()}
+                {data?.data?.[currentIndex]?.startDate.toString()} -{' '}
+                {data?.data?.[currentIndex]?.endDate.toString()}
               </span>
             </div>
 

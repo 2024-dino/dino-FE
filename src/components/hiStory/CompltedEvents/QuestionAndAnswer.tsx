@@ -118,7 +118,7 @@ const QuestionAndAnswer = ({
           {question.isAnswer && (showAnswer || !!title) && (
             <>
               <div
-                className={`w-full flex ${isAvailBookmark ? 'mb-2' : 'mb-1.5'}`}
+                className={`w-full flex ${isAvailBookmark ? 'mb-2' : 'mb-3.5'}`}
               >
                 <div className="flex-shrink-0 w-[28px]">
                   <Image
