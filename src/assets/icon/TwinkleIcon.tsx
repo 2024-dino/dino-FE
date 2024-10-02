@@ -1,9 +1,5 @@
-import {
-  getEmotionColor,
-  getProgressAndButtonColor,
-} from '@/utils/emotionColor';
-
 import { EmotionType } from '@/types/emotion';
+import { getEmotionColor } from '@/utils/emotionColor';
 
 interface Props {
   emotion: EmotionType;
@@ -11,7 +7,7 @@ interface Props {
 }
 
 const TwinkleIcon: React.FC<Props> = ({ emotion, isAnswer }) => {
-  const color = getProgressAndButtonColor(emotion);
+  const color = getEmotionColor(emotion);
 
   const pathData = isAnswer
     ? 'M0.949707 5.24268C3.7726 4.42184 4.92183 3.36037 5.89945 0.292929C6.55303 3.21493 7.63772 4.25955 10.8492 5.24268C8.07181 6.16818 7.0802 7.25564 5.89945 10.1924C4.87068 7.37239 3.83779 6.25477 0.949707 5.24268Z'
