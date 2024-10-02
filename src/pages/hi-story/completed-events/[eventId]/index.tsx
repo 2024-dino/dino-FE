@@ -1,5 +1,6 @@
 import {
   getBackGroundStyle,
+  getEmotionColor,
   getProgressAndButtonColor,
 } from '@/utils/emotionColor';
 import { mockCompletedEventList, mockEventDetailList } from '@/utils/dummy';
@@ -8,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { CompleteEventType } from '@/types/hiStory';
 import { EmotionType } from '@/types/emotion';
 import Header from '@/components/Day/Header';
+import Image from 'next/image';
 import NavBar from '@/components/common/NavBar';
 import NextTriButtonIcon from '@/assets/icon/NextTriButtonIcon';
 import PrevTriButtonIcon from '@/assets/icon/PrevTriButtonIcon';
@@ -22,7 +24,7 @@ export interface EventDetailType {
   emotion: string;
   eventStatus: 'termination' | 'execution';
   startDate: string; // Format: 'yyyy-MM-dd'
-  memo: string;
+  memo?: string;
   endDate: string; // Format: 'yyyy-MM-dd'
   fileUrl: string;
   totalQuestionCount: number;
@@ -110,19 +112,38 @@ const EventDetailPage = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center my-4">
-            <img
-              // src={event.fileUrl}
+            {event.memo && (
+              <div className="mb-5 text-center w-3/5">
+                <span
+                  className="text-[12px] font-pretendard-200 text-[#969A9C]"
+                  style={{
+                    whiteSpace: 'pre-wrap',
+                    lineHeight: '1',
+                    display: 'block',
+                  }}
+                >
+                  {event.memo}
+                </span>
+              </div>
+            )}
+            <Image
+              src={event.fileUrl}
               alt="식물 이미지..."
-              className="max-w-full h-auto"
+              className="mb-[30px]"
+              width={228}
+              height={214}
             />
             <ProgressBar
               answerNum={event.totalAnswerCount}
               totalNum={event.totalQuestionCount}
               endColor={getProgressAndButtonColor(event.emotion as EmotionType)}
             />
-            <div>
-              <span className="text-[#969A9C] text-[12px] font-pre leading-normal">
-                {event.totalAnswerCount}/{event.totalQuestionCount}
+            <div className="mt-2.5">
+              <span
+                className={`text-[16px] font-edensor leading-normal`}
+                style={{ color: getEmotionColor(event.emotion as EmotionType) }}
+              >
+                {event.totalAnswerCount} / {event.totalQuestionCount}
               </span>
             </div>
           </div>
