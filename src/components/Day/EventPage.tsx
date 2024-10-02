@@ -8,6 +8,7 @@ import { getProgressAndButtonColor } from '@/utils/emotionColor';
 import { EmotionType } from '@/types/emotion';
 import Image from 'next/image';
 import { QuestionType } from '@/types/event';
+import { formatDate } from '@/utils/event';
 interface FunnelDispenserProps {
   eventId: number;
   setStep: Dispatch<SetStateAction<number>>;
@@ -18,6 +19,9 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
   const [selectedQuestion, setSelectedQuestion] = useState<
     QuestionType | undefined
   >(undefined);
+  const today = new Date();
+  const [currentDay, setCurrentDay] = useState(today)
+  const questionsOfToday = data?.data?.questionContent.filter((question : QuestionType) => question.questionDate == formatDate(currentDay))
 
   return (
     <>
@@ -31,7 +35,7 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
       {data && (
         <QuestionList
           setChosenEvent={setSelectedQuestion}
-          questionList={data?.data?.questionContent}
+          questionList={questionsOfToday}
         />
       )}
       {selectedQuestion && (
