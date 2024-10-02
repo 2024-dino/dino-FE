@@ -20,7 +20,7 @@ const NavBarIcon = ({ goTo, children }: NavBarIconProps) => {
   return (
     <div className="w-1/3 h-70 flex justify-center items-center">
       <div
-        className="w-[50px] h-[81px] flex flex-col gap-[7px] justify-center items-center"
+        className="w-[50px] h-[81px] flex flex-col justify-center items-center"
         onClick={() => router.push(goTo)}
       >
         {children}
