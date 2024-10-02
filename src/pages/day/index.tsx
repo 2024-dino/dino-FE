@@ -6,7 +6,7 @@ import SlideMenu from '@/components/Day/SideMenu';
 import { useState } from 'react';
 import { useGetEvents } from '@/hooks/api/useEvent';
 import EventPage from '@/components/Day/EventPage';
-import { getBackGroundStyle } from '@/utils/emotionColor';
+import { getBackGroundStyle, getProgressAndButtonColor } from '@/utils/emotionColor';
 import { EmotionType } from '@/types/emotion';
 import NextTriButtonIcon from '@/assets/icon/NextTriButtonIcon';
 import PrevTriButtonIcon from '@/assets/icon/PrevTriButtonIcon';
@@ -48,7 +48,7 @@ export default function MainPage<Props>({}) {
         <div className="w-[calc(100%-40px)] max-w-2xl">
           <div className="flex items-center justify-between my-4">
             <button onClick={handlePrevClick} disabled={!prevEventId}>
-              <PrevTriButtonIcon inactive={!prevEventId} />
+              <PrevTriButtonIcon inactive={!prevEventId} color={getProgressAndButtonColor(data?.data?.[currentIndex].emotion as EmotionType)}/>
             </button>
 
             <div className="flex flex-col items-center">
@@ -65,7 +65,7 @@ export default function MainPage<Props>({}) {
             </div>
 
             <button onClick={handleNextClick} disabled={!nextEventId}>
-              <NextTriButtonIcon inactive={!nextEventId} />
+              <NextTriButtonIcon inactive={!nextEventId} color={getProgressAndButtonColor(data?.data?.[currentIndex].emotion as EmotionType)}/>
             </button>
           </div>
         </div>

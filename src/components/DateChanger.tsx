@@ -111,11 +111,14 @@ export default function DateChanger({ event }: DateChangerProps) {
         >
           {dateArr.map((day) => (
             <motion.div
-              className={`flex flex-col m-2 items-center justify-center w-[46px] min-w-11 h-[46px] ${
-                currentDay.getDate() === day.day
-                  ? 'rounded-full drop-shadow-md bg-[#A7D2C1]'
-                  : ''
-              }`}
+            style={currentDay.getDate() === day.day 
+              ? { backgroundColor: getProgressAndButtonColor(event?.emotion as EmotionType) } 
+              : {}}
+            className={`flex flex-col m-2 items-center justify-center w-[46px] min-w-11 h-[46px] ${
+              currentDay.getDate() === day.day
+                ? `rounded-full drop-shadow-md`
+                : ''
+            }`}
               transition={SPRING_OPTIONS}
             >
               <div
