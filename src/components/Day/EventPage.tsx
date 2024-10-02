@@ -1,5 +1,5 @@
 import { useGetEvent } from '@/hooks/api/useEvent';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import ProgressBar from './ProgressBar';
 import DateChanger from '../DateChanger';
 import QuestionList from './QuestionList';
@@ -24,6 +24,9 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
   const questionsOfToday = data?.data?.questionContent.filter(
     (question: QuestionType) => question.questionDate == formatDate(currentDay),
   );
+  useEffect(() => {
+    setCurrentDay(today);
+  }, [eventId]);
 
   return (
     <>

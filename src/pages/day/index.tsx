@@ -22,7 +22,6 @@ export default function MainPage<Props>({}) {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(data?.data);
 
   const prevEventId =
     currentIndex > 0 ? data?.data[currentIndex - 1].eventId : null;
@@ -71,7 +70,6 @@ export default function MainPage<Props>({}) {
                 {data?.data?.[currentIndex]?.endDate.toString()}
               </span>
             </div>
-
             <button onClick={handleNextClick} disabled={!nextEventId}>
               <NextTriButtonIcon
                 inactive={!nextEventId}
