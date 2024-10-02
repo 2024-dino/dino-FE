@@ -31,14 +31,14 @@ function getDayDiff(date1: Date, date2: Date) {
   return Math.round(timeDiff / oneDay);
 }
 
-function getDateRange(today: Date) {
+function getDateRange(today: Date, period: number) {
   const oneDay = 24 * 60 * 60 * 1000; // 밀리초 단위의 하ß루
   const dateRange = [];
   // Intl.DateTimeFormat을 사용하여 요일 포맷터 생성
   const weekdayFormatter = new Intl.DateTimeFormat('en', { weekday: 'short' });
 
-  // 현재 날짜로부터 1주일 전부터 1주일 후까지의 날짜를 계산
-  for (let i = -7; i <= 7; i++) {
+  // 이벤트 기간의 2배 길이의 날짜 범위 생성
+  for (let i = -period; i <= period; i++) {
     const date = new Date(today.getTime() + i * oneDay);
 
     dateRange.push({
@@ -57,7 +57,10 @@ export default function DateChanger({
   currentDay,
   setCurrentDay,
 }: DateChangerProps) {
-  const dateArr = useMemo(() => getDateRange(currentDay), [currentDay]);
+  const period =
+    stringToDate(event?.endDate).getDate() -
+    stringToDate(event?.startDate).getDate();
+  const dateArr = getDateRange(currentDay, period);
   const [dragStartX, setDragStartX] = useState(0);
   const [page, setPage] = useState(0);
   const [width, setWidth] = useState<number>(0);
@@ -162,7 +165,13 @@ export default function DateChanger({
               </div>
               <div
                 className={`text-center font-pretendard text-base font-light tracking-[-0.64px]
-                  ${getDayDiff(today, day.date) > 0 ? 'font-normal' : ''}
+                  ${
+                    getDayDiff(today, day.date) > 0
+                      ? stringToDate(event?.endDate) < day.date
+                        ? 'text-transparent'
+                        : 'font-normal'
+                      : ''
+                  }
                   ${
                     getDayDiff(today, day.date) < 0
                       ? stringToDate(event?.startDate) > day.date
