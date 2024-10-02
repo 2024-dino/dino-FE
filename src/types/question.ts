@@ -1,4 +1,4 @@
-import { AnswerType } from './answerType';
+import { MediaType } from './answerType';
 
 export interface QuestionContentType {
   questionId: number;
@@ -10,5 +10,5 @@ export interface QuestionContentType {
   isPriority: boolean;
   questionDate: string | Date;
   fileUrl: string;
-  type: AnswerType;
+  type: MediaType;
 }

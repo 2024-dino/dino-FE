@@ -15,7 +15,9 @@ interface FunnelDispenserProps {
 
 const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
   const { data, isSuccess, error } = useGetEvent(eventId);
-  const [selectedQuestion, setSelectedQuestion] = useState<QuestionType | undefined>(undefined);
+  const [selectedQuestion, setSelectedQuestion] = useState<
+    QuestionType | undefined
+  >(undefined);
 
   return (
     <>
@@ -36,6 +38,8 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
         <QuestionModal
           selectedQuestion={selectedQuestion}
           onClose={setSelectedQuestion}
+          eventId={eventId}
+          questionId={selectedQuestion?.questionId}
         />
       )}
     </>

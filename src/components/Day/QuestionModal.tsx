@@ -3,16 +3,32 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import AudioRecord from './AudioRecord';
 import CameraModalPro from './CameraModalPro';
 import { QuestionType } from '@/types/event';
+import { MediaType, MyAnswer } from '@/types/answerType';
+import { usePostAnswer } from '@/hooks/api/useQuestion';
 interface QuestionModalProps {
   selectedQuestion: QuestionType | undefined;
   onClose: Dispatch<SetStateAction<QuestionType | undefined>>;
+  eventId: number;
+  questionId: number;
 }
 
-const QuestionModal = ({ selectedQuestion, onClose }: QuestionModalProps) => {
+const QuestionModal = ({
+  selectedQuestion,
+  onClose,
+  eventId,
+  questionId,
+}: QuestionModalProps) => {
   const [isCameraSelectOn, setIsCameraSelectOn] = useState(false);
   const [isCameraOn, setIsCameraOn] = useState(false);
-  const toggleModal = () => onClose(undefined);
-
+  const { mutate, error } = usePostAnswer();
+  const toggleModal = () => {
+    onClose(undefined);
+  };
+  const [myAnswer, setMyAnswer] = useState<MyAnswer>({
+    content: '',
+    type: 'TEXT',
+  });
+  const [file, setFile] = useState<File | undefined>(undefined);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +40,18 @@ const QuestionModal = ({ selectedQuestion, onClose }: QuestionModalProps) => {
         setSelectedImage(e.target?.result as string);
       };
       reader.readAsDataURL(file);
+      setMyAnswer({ ...myAnswer, type: 'IMAGE' });
+      setFile(file);
     }
+  };
+
+  const handleSubmit = () => {
+    mutate({
+      eventId: eventId,
+      questionId: questionId,
+      answer: { content: myAnswer.content, type: myAnswer.type },
+      mediaFile: file,
+    });
   };
 
   return (
@@ -54,11 +81,14 @@ const QuestionModal = ({ selectedQuestion, onClose }: QuestionModalProps) => {
             </p>
           </div>
           <AudioRecord
+            answer={myAnswer}
+            setAnswer={setMyAnswer}
+            setFile={setFile}
             onCameraClick={setIsCameraSelectOn}
             isCameraSelectOn={isCameraSelectOn}
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
-            closeModal={toggleModal}
+            onSubmit={handleSubmit}
           />
         </div>
         {isCameraSelectOn && (

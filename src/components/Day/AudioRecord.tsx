@@ -1,14 +1,7 @@
 import React from 'react';
 import 'regenerator-runtime';
 
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from 'react-speech-recognition';
@@ -20,6 +13,7 @@ import Image from 'next/image';
 import RecordIcon from '@/assets/icon/RecordIcon';
 import RecordingGIF from '@/assets/gif/pulse.gif';
 import Waveform from './Waveform';
+import { MyAnswer } from '@/types/answerType';
 
 const onRecordingComplete = (blob: Blob) => {
   // 여기서 녹음된 오디오 블롭을 처리할 수 있습니다.
@@ -28,19 +22,25 @@ const onRecordingComplete = (blob: Blob) => {
 };
 
 interface AudioRecordProps {
+  answer: MyAnswer;
+  setAnswer: Dispatch<SetStateAction<MyAnswer>>;
+  setFile: Dispatch<SetStateAction<File | undefined>>;
   onCameraClick: Dispatch<SetStateAction<boolean>>;
   isCameraSelectOn: boolean;
   selectedImage: string | null;
   setSelectedImage: Dispatch<SetStateAction<string | null>>;
-  closeModal: () => void;
+  onSubmit: () => void;
 }
 
 const AudioRecord = ({
+  answer,
+  setAnswer,
+  setFile,
   onCameraClick,
   isCameraSelectOn,
   selectedImage,
   setSelectedImage,
-  closeModal,
+  onSubmit,
 }: AudioRecordProps) => {
   const {
     transcript,
@@ -50,7 +50,6 @@ const AudioRecord = ({
   } = useSpeechRecognition();
   const [currentMode, setCurrentMode] = useState<string>('text');
   const [isDeleteImage, setIsDeleteImage] = useState(false);
-  const [userInput, setUserInput] = useState<string>('');
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
@@ -66,10 +65,12 @@ const AudioRecord = ({
       };
 
       mediaRecorderRef.current.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+        const blob = new Blob(chunksRef.current, {
+          type: mediaRecorderRef?.current?.mimeType,
+        });
         const audioUrl = URL.createObjectURL(blob);
         setAudioUrl(audioUrl);
-        onRecordingComplete(blob);
+        setFile(new File([blob], 'audio.webm', { type: 'audio/webm' }));
         chunksRef.current = [];
       };
 
@@ -77,7 +78,7 @@ const AudioRecord = ({
     } catch (error) {
       console.error('Error accessing microphone:', error);
     }
-  }, [onRecordingComplete]);
+  }, []);
 
   const stopRecording = useCallback(() => {
     if (mediaRecorderRef.current && listening) {
@@ -91,11 +92,12 @@ const AudioRecord = ({
     }
     if (listening) {
       SpeechRecognition.stopListening();
-      setUserInput(transcript);
+      const voiceToText = transcript;
+      setAnswer({ ...answer, type: 'VOICE', content: voiceToText });
       resetTranscript();
       stopRecording();
     } else {
-      setUserInput('');
+      setAnswer({ ...answer, type: 'VOICE', content: '' });
       resetTranscript();
       SpeechRecognition.startListening({ language: 'ko-KR', continuous: true });
       startRecording();
@@ -114,9 +116,7 @@ const AudioRecord = ({
 
   const handleRecordIconClick = () => {
     onCameraClick(false);
-    currentMode === 'text'
-      ? setCurrentMode('record')
-      : setCurrentMode('text');
+    currentMode === 'text' ? setCurrentMode('record') : setCurrentMode('text');
   };
   return (
     <>
@@ -127,18 +127,29 @@ const AudioRecord = ({
           </h2>
           <div className="flex w-full justify-between">
             {listening ? (
-              <div className={'w-full text-[#000] font-pretendard text-sm font-extralight leading-[20px] tracking-[-1px] text-wrap text-left'}>{transcript}</div>
+              <div
+                className={
+                  'w-full text-[#000] font-pretendard text-sm font-extralight leading-[20px] tracking-[-1px] text-wrap text-left'
+                }
+              >
+                {transcript}
+              </div>
             ) : (
               <textarea
                 className="w-full outline-none resize-none text-[#000] font-pretendard text-sm font-extralight leading-[20px] tracking-[-1px] text-wrap"
-                value={userInput}
+                value={answer.content}
                 placeholder="답변 기록하기"
-                onChange={(e) => setUserInput(e.target.value)}
+                onChange={(e) =>
+                  setAnswer((prev) => ({ ...prev, content: e.target.value }))
+                }
               />
             )}
             {!selectedImage && !listening && !audioUrl && (
               <div className="flex gap-2">
-                <RecordIcon active={currentMode === 'record'} onClick={handleRecordIconClick} />
+                <RecordIcon
+                  active={currentMode === 'record'}
+                  onClick={handleRecordIconClick}
+                />
                 <CameraIcon
                   active={isCameraSelectOn}
                   onClick={handleCameraIconClick}
@@ -153,7 +164,7 @@ const AudioRecord = ({
             url={audioUrl}
             toggleListening={toggleListening}
             setAudioUrl={setAudioUrl}
-            closeModal={closeModal}
+            onSubmit={onSubmit}
           />
         )}
         {currentMode === 'record' && audioUrl == null && (
@@ -194,9 +205,9 @@ const AudioRecord = ({
             </div>
           </>
         )}
-        {(userInput !== '' || selectedImage) && audioUrl == null && (
+        {(answer.content !== '' || selectedImage) && audioUrl == null && (
           <div className={'flex items-center justify-center w-full mt-3'}>
-            <ApproveIcon onClick={closeModal} />
+            <ApproveIcon onClick={onSubmit} />
           </div>
         )}
       </div>
