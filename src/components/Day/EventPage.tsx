@@ -13,12 +13,13 @@ interface FunnelDispenserProps {
 const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
   const { data, isSuccess, error } = useGetEvent(eventId);
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
+  console.log(eventId)
   return (
     <>
         <EventElement />
         <ProgressBar answerNum={16} totalNum={22} endColor="#A5D1C0" />
         <DateChanger />
-        {data && <QuestionList setChosenEvent={setIsQuestionModalOpen} questionList={data.questionContent}/>}
+        {data && <QuestionList setChosenEvent={setIsQuestionModalOpen} questionList={data.data.questionContent}/>}
         {isQuestionModalOpen && (
         <QuestionModal
           isOpen={isQuestionModalOpen}

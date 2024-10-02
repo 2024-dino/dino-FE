@@ -22,7 +22,7 @@ export const cycleCalculator = (date: string, questionSize: number) => {
 export const calculateDiffDays = (date: string) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const [year, month, day] = date.split('/').map(Number);
+  const [year, month, day] = date.split('-').map(Number);
   const inputDate = new Date(year, month - 1, day); // 월은 0-indexed
 
   const diffTime = inputDate.getTime() - today.getTime();
@@ -64,5 +64,5 @@ export function formatDate(date: Date): string {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
 
-  return `${year}/${month}/${day}`;
+  return `${year}-${month}-${day}`;
 }
