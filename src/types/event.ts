@@ -4,7 +4,7 @@ export interface EventPostRequest {
   title: string;
   startDate: string;
   endDate: string;
-  memo: string;
+  memo?: string;
   occurrenceTime: string;
   emotion: string;
   questionSize: number;
@@ -29,7 +29,7 @@ export interface EventListGetResponse {
 export interface EventListType {
   eventId: number;
   title: String;
-  memo: String;
+  memo?: String;
   category: String; //테마 (카테고리)
   eventStatus: String; //이벤트 상태(종료/진행)
   startDate: String;
@@ -56,7 +56,7 @@ export interface EventType {
   emotion: string;
   eventStatus: 'termination' | 'execution';
   startDate: string; // "yyyy-MM-dd" 형식
-  memo: string;
+  memo?: string;
   endDate: string; // "yyyy-MM-dd" 형식
   fileUrl: string;
   totalQuestionCount: number;
