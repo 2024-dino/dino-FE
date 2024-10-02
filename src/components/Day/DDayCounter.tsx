@@ -3,14 +3,14 @@ import { getProgressAndButtonColor } from '@/utils/emotionColor';
 import React from 'react';
 
 interface DDayCounterProps {
+  currentDay: Date;
   dDay: string;
   emotion: EmotionType;
 }
 
-const DDayCounter = ({ dDay, emotion }: DDayCounterProps) => {
-  const today = new Date();
+const DDayCounter = ({ currentDay, dDay, emotion }: DDayCounterProps) => {
   const targetDate = new Date(dDay);
-  const differenceDays = targetDate.getTime() - today.getTime();
+  const differenceDays = targetDate.getTime() - currentDay.getTime();
   const dDayCount = Math.ceil(differenceDays / (1000 * 60 * 60 * 24));
   return (
     <div

@@ -20,8 +20,10 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
     QuestionType | undefined
   >(undefined);
   const today = new Date();
-  const [currentDay, setCurrentDay] = useState(today)
-  const questionsOfToday = data?.data?.questionContent.filter((question : QuestionType) => question.questionDate == formatDate(currentDay))
+  const [currentDay, setCurrentDay] = useState(today);
+  const questionsOfToday = data?.data?.questionContent.filter(
+    (question: QuestionType) => question.questionDate == formatDate(currentDay),
+  );
 
   return (
     <>
@@ -31,7 +33,12 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
         totalNum={data?.data?.totalQuestionCount}
         endColor={getProgressAndButtonColor(data?.data?.emotion as EmotionType)}
       />
-      <DateChanger event={data?.data} />
+      <DateChanger
+        event={data?.data}
+        today={today}
+        currentDay={currentDay}
+        setCurrentDay={setCurrentDay}
+      />
       {data && (
         <QuestionList
           setChosenEvent={setSelectedQuestion}

@@ -1,14 +1,18 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useMemo, useState } from 'react';
 import { motion, PanInfo, useMotionValue } from 'framer-motion';
 import DDayCounter from './Day/DDayCounter';
 import { EventType } from '../types/event';
 import { EmotionType } from '@/types/emotion';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
+import { stringToDate } from '@/utils/event';
 
 interface DateChangerProps {
   event: EventType;
+  today: Date;
+  currentDay: Date;
+  setCurrentDay: Dispatch<SetStateAction<Date>>;
 }
 
 const DRAG_BUFFER = 10; // 페이지 이동을 유발하는 드래그 길이
@@ -47,10 +51,12 @@ function getDateRange(today: Date) {
   return dateRange;
 }
 
-export default function DateChanger({ event }: DateChangerProps) {
-  const today = new Date();
-  const dDay = getDateRange(today)[14].date;
-  const [currentDay, setCurrentDay] = useState(today);
+export default function DateChanger({
+  event,
+  today,
+  currentDay,
+  setCurrentDay,
+}: DateChangerProps) {
   const dateArr = useMemo(() => getDateRange(currentDay), [currentDay]);
   const [dragStartX, setDragStartX] = useState(0);
   const [page, setPage] = useState(0);
@@ -62,8 +68,6 @@ export default function DateChanger({ event }: DateChangerProps) {
   ): void => {
     setDragStartX(info.point.x);
   };
-
-  console.log(currentDay.getDate());
 
   const onDrag = (
     event: MouseEvent | TouchEvent | PointerEvent,
@@ -79,12 +83,18 @@ export default function DateChanger({ event }: DateChangerProps) {
     if (x <= -DRAG_BUFFER && page < dateArr.length - 1) {
       const tomorrow = new Date(currentDay);
       tomorrow.setDate(currentDay.getDate() + 1);
+      if (tomorrow > stringToDate(event?.endDate)) {
+        return;
+      }
       setCurrentDay(tomorrow);
       setPage((page) => page + 1);
     }
     if (x >= 10) {
       const yesterday = new Date(currentDay);
       yesterday.setDate(currentDay.getDate() - 1);
+      if (yesterday <= stringToDate(event?.startDate)) {
+        return;
+      }
       setCurrentDay(yesterday);
       setPage((page) => page - 1);
     }
@@ -92,6 +102,7 @@ export default function DateChanger({ event }: DateChangerProps) {
   return (
     <div className=" w-[400px] overflow-hidden">
       <DDayCounter
+        currentDay={currentDay}
         dDay={event?.endDate}
         emotion={event?.emotion as EmotionType}
       />
@@ -111,20 +122,39 @@ export default function DateChanger({ event }: DateChangerProps) {
         >
           {dateArr.map((day) => (
             <motion.div
-            style={currentDay.getDate() === day.day 
-              ? { backgroundColor: getProgressAndButtonColor(event?.emotion as EmotionType) } 
-              : {}}
-            className={`flex flex-col m-2 items-center justify-center w-[46px] min-w-11 h-[46px] ${
-              currentDay.getDate() === day.day
-                ? `rounded-full drop-shadow-md`
-                : ''
-            }`}
+              style={
+                currentDay.getDate() === day.day
+                  ? {
+                      backgroundColor: getProgressAndButtonColor(
+                        event?.emotion as EmotionType,
+                      ),
+                    }
+                  : {}
+              }
+              className={`flex flex-col m-2 items-center justify-center w-[46px] min-w-11 h-[46px] ${
+                currentDay.getDate() === day.day
+                  ? `rounded-full drop-shadow-md`
+                  : ''
+              }`}
               transition={SPRING_OPTIONS}
             >
               <div
                 className={`text-center font-pretendard text-[8px] font-light tracking-[-0.32px]
-                  ${getDayDiff(today, day.date) > 0 ? 'text-black' : ''}
-                  ${getDayDiff(today, day.date) < 0 ? 'text-[#DDDDDD]' : ''}
+                  ${
+                    getDayDiff(today, day.date) > 0
+                      ? stringToDate(event?.endDate) < day.date
+                        ? 'text-transparent'
+                        : 'text-black'
+                      : ''
+                  }
+
+                  ${
+                    getDayDiff(today, day.date) < 0
+                      ? stringToDate(event?.startDate) > day.date
+                        ? 'text-transparent'
+                        : 'text-[#DDDDDD]'
+                      : ''
+                  }
                   ${getDayDiff(today, day.date) == 0 ? 'text-white' : ''}
                   `}
               >
@@ -135,7 +165,9 @@ export default function DateChanger({ event }: DateChangerProps) {
                   ${getDayDiff(today, day.date) > 0 ? 'font-normal' : ''}
                   ${
                     getDayDiff(today, day.date) < 0
-                      ? 'text-[#DDDDDD] font-normal'
+                      ? stringToDate(event?.startDate) > day.date
+                        ? 'text-transparent'
+                        : 'text-[#DDDDDD] font-normal'
                       : ''
                   }
                   ${getDayDiff(today, day.date) == 0 ? 'text-white' : ''}
