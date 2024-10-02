@@ -87,3 +87,4 @@ export interface QuestionType {
   fileUrl: string;
   type: 'TEXT' | 'VOICE' | 'IMAGE';
 }
+export type EventStatus = 'termination' | 'execution';

@@ -1,9 +1,8 @@
-import NavBar from '@/components/common/NavBar';
+import React, { useContext, useState } from 'react';
+import { EventPostRequest } from '@/types/event';
 import FunnelDispenser from '@/components/ing/create/FunnelDispenser';
 import Header from '@/components/Day/Header';
-import SlideMenu from '@/components/Day/SideMenu';
-import { EventPostRequest } from '@/types/event';
-import React, { useContext, useState } from 'react';
+import NavBar from '@/components/common/NavBar';
 
 export interface EventContextType {
   eventInfo: EventPostRequest;
@@ -39,8 +38,7 @@ const EventCreatePage = () => {
     <>
       <EventContext.Provider value={{ eventInfo, setEventInfo }}>
         <div className="flex flex-col items-center justify-start w-full h-screen">
-          <Header onClick={() => setIsSideMenuOpen(true)} />
-          <SlideMenu isOpen={isSideMenuOpen} setIsOpen={setIsSideMenuOpen} />
+          <Header />
           <FunnelDispenser step={step} setStep={setStep} />
           <NavBar />
         </div>
