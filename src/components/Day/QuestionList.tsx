@@ -16,9 +16,9 @@ const EventCard = ({ children }: EventCardProps) => {
 
 const QuestionList = ({ setChosenEvent, questionList }: EventListProps) => {
   return (
-    <>
+    <div className="max-h-60 overflow-scroll">
       {questionList.map((question) => (
-        <div onClick={() => setChosenEvent(true)}>
+        <div className="" onClick={() => setChosenEvent(true)}>
           <EventCard>
             <div className="flex gap-2 px-3 py-4 w-full rounded-[10px] shadow-[0_2px_16px_rgba(68,68,68,0.12)]">
               <p className="text-[#BAD7EC] font-['edensor'] text-2xl leading-[20px] tracking-[-1px] flex justify-start">
@@ -41,7 +41,7 @@ const QuestionList = ({ setChosenEvent, questionList }: EventListProps) => {
           </EventCard>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

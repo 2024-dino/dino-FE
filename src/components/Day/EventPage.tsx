@@ -5,6 +5,8 @@ import ProgressBar from './ProgressBar';
 import DateChanger from '../DateChanger';
 import QuestionList from './QuestionList';
 import QuestionModal from './QuestionModal';
+import { getProgressAndButtonColor } from '@/utils/emotionColor';
+import { EmotionType } from '@/types/emotion';
 interface FunnelDispenserProps {
   eventId: number;
   setStep: Dispatch<SetStateAction<number>>;
@@ -13,14 +15,22 @@ interface FunnelDispenserProps {
 const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
   const { data, isSuccess, error } = useGetEvent(eventId);
   const [isQuestionModalOpen, setIsQuestionModalOpen] = useState(false);
-  console.log(eventId)
+
   return (
     <>
-        <EventElement />
-        <ProgressBar answerNum={16} totalNum={22} endColor="#A5D1C0" />
-        <DateChanger />
-        {data && <QuestionList setChosenEvent={setIsQuestionModalOpen} questionList={data.data.questionContent}/>}
-        {isQuestionModalOpen && (
+      <ProgressBar
+        answerNum={data?.data.totalAnswerCount}
+        totalNum={data?.data.totalQuestionCount}
+        endColor={getProgressAndButtonColor(data?.data.emotion as EmotionType)}
+      />
+      <DateChanger event={data?.data} />
+      {data && (
+        <QuestionList
+          setChosenEvent={setIsQuestionModalOpen}
+          questionList={data.data.questionContent}
+        />
+      )}
+      {isQuestionModalOpen && (
         <QuestionModal
           isOpen={isQuestionModalOpen}
           setIsOpen={setIsQuestionModalOpen}
