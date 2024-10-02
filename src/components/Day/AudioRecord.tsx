@@ -14,10 +14,10 @@ import SpeechRecognition, {
 } from 'react-speech-recognition';
 
 import ApproveIcon from '@/assets/icon/ApproveIcon.svg';
-import CameraIcon from '@/assets/icon/CameraIcon.svg';
+import CameraIcon from '@/assets/icon/CameraIcon';
 import DeleteIcon from '@/assets/icon/DeleteIcon.svg';
 import Image from 'next/image';
-import RecordIcon from '@/assets/icon/RecordIcon.svg';
+import RecordIcon from '@/assets/icon/RecordIcon';
 import RecordingGIF from '@/assets/gif/pulse.gif';
 import Waveform from './Waveform';
 
@@ -28,7 +28,8 @@ const onRecordingComplete = (blob: Blob) => {
 };
 
 interface AudioRecordProps {
-  onCameraClick: () => void;
+  onCameraClick: Dispatch<SetStateAction<boolean>>;
+  isCameraSelectOn: boolean;
   selectedImage: string | null;
   setSelectedImage: Dispatch<SetStateAction<string | null>>;
   closeModal: () => void;
@@ -36,6 +37,7 @@ interface AudioRecordProps {
 
 const AudioRecord = ({
   onCameraClick,
+  isCameraSelectOn,
   selectedImage,
   setSelectedImage,
   closeModal,
@@ -104,6 +106,18 @@ const AudioRecord = ({
     e.stopPropagation();
     setSelectedImage('');
   };
+
+  const handleCameraIconClick = () => {
+    onCameraClick(!isCameraSelectOn);
+    setCurrentMode('text');
+  };
+
+  const handleRecordIconClick = () => {
+    onCameraClick(false);
+    currentMode === 'text'
+      ? setCurrentMode('record')
+      : setCurrentMode('text');
+  };
   return (
     <>
       <div className="flex items-center flex-col bg-white px-3 py-4 w-[calc(100vw-40px)] rounded-[10px] shadow-lg">
@@ -113,7 +127,7 @@ const AudioRecord = ({
           </h2>
           <div className="flex w-full justify-between">
             {listening ? (
-              <div className={'w-full text-[14px] text-wrap'}>{transcript}</div>
+              <div className={'w-full text-[#000] font-pretendard text-sm font-extralight leading-[20px] tracking-[-1px] text-wrap text-left'}>{transcript}</div>
             ) : (
               <textarea
                 className="w-full outline-none resize-none text-[#000] font-pretendard text-sm font-extralight leading-[20px] tracking-[-1px] text-wrap"
@@ -122,10 +136,15 @@ const AudioRecord = ({
                 onChange={(e) => setUserInput(e.target.value)}
               />
             )}
-            <div className="flex gap-2">
-              <RecordIcon onClick={() => setCurrentMode('record')} />
-              <CameraIcon onClick={onCameraClick} />
-            </div>
+            {!selectedImage && !listening && !audioUrl && (
+              <div className="flex gap-2">
+                <RecordIcon active={currentMode === 'record'} onClick={handleRecordIconClick} />
+                <CameraIcon
+                  active={isCameraSelectOn}
+                  onClick={handleCameraIconClick}
+                />
+              </div>
+            )}
           </div>
         </div>
         {listening && <Image src={RecordingGIF} alt="alt" />}
