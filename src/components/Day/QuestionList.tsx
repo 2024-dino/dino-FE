@@ -43,7 +43,9 @@ const QuestionList = ({
             </EventCard>
           </div>
         ) : (
-          <div className='text-black/60 text-center font-pretendard-300 text-base tracking-tighter'>오늘은 님을 기다리는 질문이 없습니다</div>
+          <div className="text-black/60 text-center font-pretendard-300 text-base tracking-tighter">
+            오늘은 님을 기다리는 질문이 없습니다
+          </div>
         )
       ) : (
         <>
@@ -54,7 +56,7 @@ const QuestionList = ({
                   <p className="text-[#BAD7EC] font-['edensor'] text-2xl leading-[20px] tracking-[-1px] flex justify-start">
                     Q.
                   </p>
-                  <p className="text-[#000] font-pretendard text-sm font-extralight leading-[20px] tracking-[-1px] text-left">
+                  <p className="text-[#000] font-pretendard-300 text-sm leading-[20px] tracking-[-0.64px] text-left">
                     {question.content}
                   </p>
                 </div>
@@ -65,17 +67,13 @@ const QuestionList = ({
                     <h2 className="text-[#BAD7EC] font-['edensor'] text-2xl leading-[20px] tracking-[-1px]">
                       A.
                     </h2>
-                    <p className="flex flex-row text-[#000] font-pretendard text-sm font-extralight leading-[20px] tracking-[-1px]">
+                    <p className="flex flex-row text-[#000] font-pretendard-300 text-sm leading-[20px] tracking-[-1px]">
                       {question.isAnswer ? question.myAnswer : '답변 작성하기'}
                     </p>
                   </div>
                   <div>
                     {question.type == 'VOICE' && (
-                      <WaveformForPlay
-                        url={
-                          'https://daydreamcdn.s3.ap-northeast-2.amazonaws.com/DayDream/3602426060/0/0/0/8b286e26-fb5c-4f0c-a881-5e9ceb1e24cd.mp3'
-                        }
-                      />
+                      <audio controls src={question.fileUrl} />
                     )}
                     {question.type == 'IMAGE' && (
                       <Image
