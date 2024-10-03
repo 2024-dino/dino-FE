@@ -14,7 +14,7 @@ const QuestionInfoForm = ({ setStep }: QuestionInfoFormProps) => {
       <div className="flex flex-col justify-start w-full px-5">
         <div className="w-full mb-5">
           <label
-            className="block text-xl tracking-tighter leading-tight font-extralight font-['Pretendard'] text-black/80 text-left"
+            className="block text-xl tracking-tighter leading-tight font-pretendard-200 text-black/80 text-left"
             htmlFor="eventInfo"
           >
             이벤트 정보를 입력해주세요.

@@ -84,18 +84,28 @@ export default function DateChanger({
   const onDragEnd = () => {
     const x = dragX.get();
     if (x <= -DRAG_BUFFER && page < dateArr.length - 1) {
-      const tomorrow = new Date(currentDay);
-      tomorrow.setDate(currentDay.getDate() + 1);
-      if (tomorrow > stringToDate(event?.endDate)) {
+      const tomorrow = new Date(currentDay.getTime() + 24 * 60 * 60 * 1000);
+      const endDate = stringToDate(event?.endDate);
+      if (tomorrow > endDate) {
+        // endDate까지 이동할 수 있도록 수정
+        if (currentDay.getTime() !== endDate.getTime()) {
+          setCurrentDay(endDate);
+          setPage((prevPage) => prevPage + 1);
+        }
         return;
       }
       setCurrentDay(tomorrow);
-      setPage((page) => page + 1);
+      setPage((prevPage) => prevPage + 1);
     }
     if (x >= 10) {
-      const yesterday = new Date(currentDay);
-      yesterday.setDate(currentDay.getDate() - 1);
-      if (yesterday <= stringToDate(event?.startDate)) {
+      const yesterday = new Date(currentDay.getTime() - 24 * 60 * 60 * 1000);
+      const startDate = stringToDate(event?.startDate);
+      if (yesterday < startDate) {
+        // startDate 이동할 수 있도록
+        if (currentDay.getTime() !== startDate.getTime()) {
+          setCurrentDay(startDate);
+          setPage((prevPage) => prevPage - 1);
+        }
         return;
       }
       setCurrentDay(yesterday);
@@ -143,21 +153,35 @@ export default function DateChanger({
             >
               <div
                 className={`text-center font-pretendard text-[8px] font-light tracking-[-0.32px]
-                  ${
-                    getDayDiff(today, day.date) > 0
-                      ? stringToDate(event?.endDate) < day.date
-                        ? 'text-transparent'
-                        : 'text-black'
-                      : ''
-                  }
+                  ${(() => {
+                    const today = new Date();
+                    const eventStartDate = stringToDate(event?.startDate);
+                    const eventEndDate = stringToDate(event?.endDate);
+                    const dayDiff = getDayDiff(eventEndDate, day.date);
 
-                  ${
-                    getDayDiff(today, day.date) < 0
-                      ? stringToDate(event?.startDate) > day.date
-                        ? 'text-transparent'
-                        : 'text-[#DDDDDD]'
-                      : ''
-                  }
+                    // D-day 처리
+                    if (dayDiff === 0) {
+                      return 'font-bold text-black'; // D-day 스타일
+                    }
+
+                    // 미래 날짜 처리
+                    if (dayDiff > 0) {
+                      if (day.date > eventEndDate) {
+                        return 'text-transparent';
+                      }
+                      return 'font-normal';
+                    }
+
+                    // 과거 날짜 처리
+                    if (dayDiff < 0) {
+                      if (day.date < eventStartDate) {
+                        return 'text-transparent';
+                      }
+                      return 'text-black font-normal';
+                    }
+
+                    return ''; // 기본 스타일
+                  })()}
                   ${getDayDiff(today, day.date) == 0 ? 'text-white' : ''}
                   `}
               >
@@ -165,20 +189,35 @@ export default function DateChanger({
               </div>
               <div
                 className={`text-center font-pretendard text-base font-light tracking-[-0.64px]
-                  ${
-                    getDayDiff(today, day.date) > 0
-                      ? stringToDate(event?.endDate) < day.date
-                        ? 'text-transparent'
-                        : 'font-normal'
-                      : ''
-                  }
-                  ${
-                    getDayDiff(today, day.date) < 0
-                      ? stringToDate(event?.startDate) > day.date
-                        ? 'text-transparent'
-                        : 'text-[#DDDDDD] font-normal'
-                      : ''
-                  }
+                  ${(() => {
+                    const today = new Date();
+                    const eventStartDate = stringToDate(event?.startDate);
+                    const eventEndDate = stringToDate(event?.endDate);
+                    const dayDiff = getDayDiff(eventEndDate, day.date);
+
+                    // D-day 처리
+                    if (dayDiff === 0) {
+                      return 'font-bold text-black'; // D-day 스타일
+                    }
+
+                    // 미래 날짜 처리
+                    if (dayDiff > 0) {
+                      if (day.date > eventEndDate) {
+                        return 'text-transparent';
+                      }
+                      return 'font-normal';
+                    }
+
+                    // 과거 날짜 처리
+                    if (dayDiff < 0) {
+                      if (day.date < eventStartDate) {
+                        return 'text-transparent';
+                      }
+                      return 'text-black font-normal';
+                    }
+
+                    return ''; // 기본 스타일
+                  })()}
                   ${getDayDiff(today, day.date) == 0 ? 'text-white' : ''}
                   `}
               >
