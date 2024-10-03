@@ -158,10 +158,17 @@ export default function DateChanger({
                     const eventStartDate = stringToDate(event?.startDate);
                     const eventEndDate = stringToDate(event?.endDate);
                     const dayDiff = getDayDiff(eventEndDate, day.date);
+                    const isCurrent =
+                      currentDay.getMonth() == day.date.getMonth() &&
+                      currentDay.getDate() == day.date.getDate();
+
+                    if (isCurrent) {
+                      return 'text-white font-pretendard-300'
+                    }
 
                     // D-day 처리
                     if (dayDiff === 0) {
-                      return 'font-bold text-black'; // D-day 스타일
+                      return 'font-pretendard-300 text-black'; // D-day 스타일
                     }
 
                     // 미래 날짜 처리
@@ -169,7 +176,7 @@ export default function DateChanger({
                       if (day.date > eventEndDate) {
                         return 'text-transparent';
                       }
-                      return 'font-normal';
+                      return 'font-pretendard-300';
                     }
 
                     // 과거 날짜 처리
@@ -177,12 +184,21 @@ export default function DateChanger({
                       if (day.date < eventStartDate) {
                         return 'text-transparent';
                       }
-                      return 'text-black font-normal';
+                      return 'text-black font-pretendard-300';
                     }
 
                     return ''; // 기본 스타일
                   })()}
-                  ${getDayDiff(today, day.date) == 0 ? 'text-white' : ''}
+                  ${
+                    getDayDiff(today, day.date) == 0
+                      ? 'font-pretendard-400'
+                      : ''
+                  }
+                ${
+                  currentDay.getMonth() == day.date.getMonth() &&
+                  currentDay.getDate() == day.date.getDate() &&
+                  'text-white'
+                }}
                   `}
               >
                 {day.dayOfWeek}
@@ -194,10 +210,17 @@ export default function DateChanger({
                     const eventStartDate = stringToDate(event?.startDate);
                     const eventEndDate = stringToDate(event?.endDate);
                     const dayDiff = getDayDiff(eventEndDate, day.date);
+                    const isCurrent =
+                    currentDay.getMonth() == day.date.getMonth() &&
+                    currentDay.getDate() == day.date.getDate();
+
+                  if (isCurrent) {
+                    return 'text-white font-pretendard-300'
+                  }
 
                     // D-day 처리
                     if (dayDiff === 0) {
-                      return 'font-bold text-black'; // D-day 스타일
+                      return 'font-pretendard-300 text-black'; // D-day 스타일
                     }
 
                     // 미래 날짜 처리
@@ -213,12 +236,16 @@ export default function DateChanger({
                       if (day.date < eventStartDate) {
                         return 'text-transparent';
                       }
-                      return 'text-black font-normal';
+                      return 'text-black font-pretendard-300';
                     }
 
                     return ''; // 기본 스타일
                   })()}
-                  ${getDayDiff(today, day.date) == 0 ? 'text-white' : ''}
+                  ${
+                    getDayDiff(today, day.date) == 0
+                      ? 'font-pretendard-400'
+                      : ''
+                  }
                   `}
               >
                 {day.day}
