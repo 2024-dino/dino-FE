@@ -9,7 +9,7 @@ import { EventType } from '@/types/event';
 
 const IngPage = () => {
   const router = useRouter();
-  const { data, isSuccess, error } = useGetEvents()
+  const { data, isSuccess, error } = useGetEvents();
   return (
     <div className="w-full h-screen items-center`">
       <Header />

@@ -4,26 +4,23 @@ import EventElement from '../eventManage/EventElement';
 interface EventCardProps {
   eventId: number;
   title: string;
-  category: string; // 테마 (카테고리)
-  eventStatus: string; // 이벤트 상태(종료/진행)
+  category?: string; // 테마 (카테고리)
+  eventStatus?: string; // 이벤트 상태(종료/진행)
   startDate: string; // 'yyyy-MM-dd' 형식
   memo?: string;
   endDate: string; // 'yyyy-MM-dd' 형식
   fileUrl: string; // 성장 파일 CDN 주소 반환
-  step: string;
-  progress: number; // 진척률 % [전체 답변 갯수 / 전체 질문 갯수] * 100
+  step?: string;
+  progress?: number; // 진척률 % [전체 답변 갯수 / 전체 질문 갯수] * 100
 }
 
 const EventCard: React.FC<EventCardProps> = ({
   title,
-  eventStatus,
   startDate,
   endDate,
   memo,
   fileUrl,
 }) => {
-  const statusText = eventStatus === 'execution' ? '진행 중' : '종료';
-
   return (
     <EventElement>
       <div className="flex items-center justify-center w-[350px] h-[200px] bg-white p-6 rounded-lg shadow-md max-w-md">
