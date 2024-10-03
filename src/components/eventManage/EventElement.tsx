@@ -1,4 +1,5 @@
 import { PanInfo, useMotionValue, motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 import React, { Children, ReactElement, useState } from 'react';
 
 const DRAG_BUFFER = 80; // 페이지 이동을 유발하는 드래그 길이
@@ -27,12 +28,15 @@ const EventElement = ({ children }: Props) => {
   const [page, setPage] = useState(0);
   const [width, setWidth] = useState<number>(0);
   const dragX = useMotionValue(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const router = useRouter();
 
   const onDragStart = (
     event: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo,
   ): void => {
     setDragStartX(info.point.x);
+    setIsDragging(true);
   };
 
   const onDrag = (
@@ -50,6 +54,14 @@ const EventElement = ({ children }: Props) => {
       setPage((point) => point + 1);
     x >= DRAG_BUFFER && page > 0 && setPage((point) => point - 1);
     x >= DRAG_BUFFER && page == 0 && alert('게시물 삭제');
+    setIsDragging(false);
+  };
+
+  const handleClick = () => {
+    if (!isDragging) {
+      router.push('/ing/detail');
+    }
+    setIsDragging(false);
   };
   return (
     <>
@@ -78,7 +90,9 @@ const EventElement = ({ children }: Props) => {
                 key={idx}
                 className="w-[400px] flex gap-[30px items-center justify-center overflow-hidden"
               >
-                <motion.div transition={SPRING_OPTIONS}>{children}</motion.div>
+                <motion.div transition={SPRING_OPTIONS} onClick={handleClick}>
+                  {children}
+                </motion.div>
               </div>
             ))}
           </motion.div>
