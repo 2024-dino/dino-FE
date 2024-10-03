@@ -1,6 +1,8 @@
+import { useDeleteEvent } from '@/hooks/api/useEvent';
 import { PanInfo, useMotionValue, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React, { Children, ReactElement, useState } from 'react';
+import ConfirmModal from '../common/ConfirmModal';
 
 const DRAG_BUFFER = 80; // 페이지 이동을 유발하는 드래그 길이
 
@@ -21,15 +23,24 @@ const SPRING_OPTIONS = {
 
 interface Props {
   children: ReactElement;
+  eventId: number;
 }
 
-const EventElement = ({ children }: Props) => {
+const EventElement = ({ children, eventId }: Props) => {
   const [dragStartX, setDragStartX] = useState(0);
   const [page, setPage] = useState(0);
   const [width, setWidth] = useState<number>(0);
   const dragX = useMotionValue(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
   const router = useRouter();
+  const { mutate } = useDeleteEvent();
+
+  const handleDelete = () => {
+    alert('삭제')
+    mutate(eventId)
+    router.push('/ing')
+  }
 
   const onDragStart = (
     event: MouseEvent | TouchEvent | PointerEvent,
@@ -53,7 +64,7 @@ const EventElement = ({ children }: Props) => {
       page < slides.length - 1 &&
       setPage((point) => point + 1);
     x >= DRAG_BUFFER && page > 0 && setPage((point) => point - 1);
-    x >= DRAG_BUFFER && page == 0 && alert('게시물 삭제');
+    x >= DRAG_BUFFER && page == 0 && setIsDelete(true);
     setIsDragging(false);
   };
 
@@ -98,6 +109,7 @@ const EventElement = ({ children }: Props) => {
           </motion.div>
         </div>
       </div>
+      {isDelete && <ConfirmModal content="삭제하시겠습니까?" isOpen={isDelete} setIsOpen={setIsDelete} onConfirm={handleDelete}/>}
     </>
   );
 };
