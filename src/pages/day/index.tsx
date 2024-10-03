@@ -53,7 +53,7 @@ export default function MainPage<Props>({}) {
               <PrevTriButtonIcon
                 inactive={!prevEventId}
                 color={getProgressAndButtonColor(
-                  data?.data?.[currentIndex].emotion as EmotionType,
+                  data?.data?.[currentIndex]?.emotion as EmotionType,
                 )}
               />
             </button>
@@ -66,15 +66,15 @@ export default function MainPage<Props>({}) {
                 {data?.data?.[currentIndex]?.title}
               </span>
               <span className="font-pretendard-200 text-[12px] text-[#969A9C] text-center">
-                {data?.data?.[currentIndex]?.startDate.toString()} -{' '}
-                {data?.data?.[currentIndex]?.endDate.toString()}
+                {data?.data?.[currentIndex]?.startDate?.toString()} -{' '}
+                {data?.data?.[currentIndex]?.endDate?.toString()}
               </span>
             </div>
             <button onClick={handleNextClick} disabled={!nextEventId}>
               <NextTriButtonIcon
                 inactive={!nextEventId}
                 color={getProgressAndButtonColor(
-                  data?.data?.[currentIndex].emotion as EmotionType,
+                  data?.data?.[currentIndex]?.emotion as EmotionType,
                 )}
               />
             </button>
