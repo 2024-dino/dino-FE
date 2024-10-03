@@ -6,7 +6,7 @@ import DDayCounter from './Day/DDayCounter';
 import { EventType } from '../types/event';
 import { EmotionType } from '@/types/emotion';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
-import { stringToDate } from '@/utils/event';
+import { calculatePeriod, stringToDate } from '@/utils/event';
 
 interface DateChangerProps {
   event: EventType;
@@ -57,9 +57,7 @@ export default function DateChanger({
   currentDay,
   setCurrentDay,
 }: DateChangerProps) {
-  const period =
-    stringToDate(event?.endDate).getDate() -
-    stringToDate(event?.startDate).getDate();
+  const period = calculatePeriod(event?.startDate, event?.endDate);
   const dateArr = getDateRange(currentDay, period);
   const [dragStartX, setDragStartX] = useState(0);
   const [page, setPage] = useState(0);
@@ -163,7 +161,7 @@ export default function DateChanger({
                       currentDay.getDate() == day.date.getDate();
 
                     if (isCurrent) {
-                      return 'text-white font-pretendard-300'
+                      return 'text-white font-pretendard-300';
                     }
 
                     // D-day 처리
@@ -211,12 +209,12 @@ export default function DateChanger({
                     const eventEndDate = stringToDate(event?.endDate);
                     const dayDiff = getDayDiff(eventEndDate, day.date);
                     const isCurrent =
-                    currentDay.getMonth() == day.date.getMonth() &&
-                    currentDay.getDate() == day.date.getDate();
+                      currentDay.getMonth() == day.date.getMonth() &&
+                      currentDay.getDate() == day.date.getDate();
 
-                  if (isCurrent) {
-                    return 'text-white font-pretendard-300'
-                  }
+                    if (isCurrent) {
+                      return 'text-white font-pretendard-300';
+                    }
 
                     // D-day 처리
                     if (dayDiff === 0) {
