@@ -103,3 +103,14 @@ export const isValidDateFormat = (dateString: string): boolean => {
   // 입력된 날짜가 오늘 이후인지 확인
   return inputDate > today;
 };
+
+export function calculatePeriod(startDateString: string, endDateString: string): number {
+  const startDate = stringToDate(startDateString);
+  const endDate = stringToDate(endDateString);
+
+  // 밀리초 단위로 차이를 계산한 후, 일 단위로 변환
+  const differenceInTime = endDate.getTime() - startDate.getTime();
+  const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+
+  return differenceInDays;
+}
