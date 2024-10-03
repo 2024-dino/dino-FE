@@ -77,6 +77,7 @@ export interface EventType {
 }
 
 export interface EventEditType {
+  eventId: number;
   title: string;
   endDate: string;
   memo: string;

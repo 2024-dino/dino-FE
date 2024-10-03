@@ -1,5 +1,6 @@
 import React from 'react';
 import EventElement from '../eventManage/EventElement';
+import { useRouter } from 'next/router';
 
 interface EventCardProps {
   eventId: number;
@@ -21,9 +22,10 @@ const EventCard: React.FC<EventCardProps> = ({
   memo,
   fileUrl,
 }) => {
+  const router = useRouter();
   return (
     <EventElement>
-      <div className="flex items-center justify-center w-[350px] h-[200px] bg-white p-6 rounded-lg shadow-md max-w-md">
+      <div onClick={() => router.push('/ing/detail')} className="flex items-center justify-center w-[350px] h-[200px] bg-white p-6 rounded-lg shadow-md max-w-md">
         <div className="flex flex-col justify-between h-full flex-grow mr-4">
           <div>
             <div className="text-[#000] font-pretendard text-sm font-extralight tracking-[-0.56px]">
