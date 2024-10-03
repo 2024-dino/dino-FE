@@ -6,7 +6,7 @@ import NavBar from '@/components/common/NavBar';
 import { useRouter } from 'next/router';
 import { useGetEvents } from '@/hooks/api/useEvent';
 import { EventType } from '@/types/event';
-import NoEventCard from '@/components/ing/noEventCard';
+import NoEventCard from '@/components/ing/NoEventCard';
 
 const IngPage = () => {
   const router = useRouter();
