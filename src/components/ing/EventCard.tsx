@@ -16,21 +16,17 @@ interface EventCardProps {
 
 const EventCard: React.FC<EventCardProps> = ({
   title,
-  category,
   eventStatus,
   startDate,
   endDate,
   memo,
-  step,
-  progress,
   fileUrl,
 }) => {
   const statusText = eventStatus === 'execution' ? '진행 중' : '종료';
-  const formattedProgress = Math.round(progress);
 
   return (
     <EventElement>
-      <div className="flex items-center justify-center w-full h-[200px] bg-white p-6 rounded-lg shadow-md max-w-md">
+      <div className="flex items-center justify-center w-[350px] h-[200px] bg-white p-6 rounded-lg shadow-md max-w-md">
         <div className="flex flex-col justify-between h-full flex-grow mr-4">
           <div>
             <div className="text-[#000] font-pretendard text-sm font-extralight tracking-[-0.56px]">

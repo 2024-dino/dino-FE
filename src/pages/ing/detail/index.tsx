@@ -18,7 +18,7 @@ import Header from '@/components/Day/Header';
 
 interface Props {}
 
-export default function MainPage<Props>({}) {
+export default function DetailPage<Props>({}) {
   const { data, isSuccess, error } = useGetEvents();
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const router = useRouter();

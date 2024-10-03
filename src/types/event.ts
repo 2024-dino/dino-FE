@@ -76,6 +76,13 @@ export interface EventType {
   questionContent: Array<QuestionType>;
 }
 
+export interface EventEditType {
+  title: string;
+  endDate: string;
+  memo: string;
+  occurrenceTime: string;
+}
+
 export interface QuestionType {
   questionId: number;
   questionDate: string; // "yyyy-MM-dd" 형식

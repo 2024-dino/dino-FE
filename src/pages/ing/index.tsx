@@ -3,16 +3,18 @@ import React, { useState } from 'react';
 import EventCard from '@/components/ing/EventCard';
 import Header from '@/components/Day/Header';
 import NavBar from '@/components/common/NavBar';
-import mockEventData from '@/store/mockData';
 import { useRouter } from 'next/router';
+import { useGetEvents } from '@/hooks/api/useEvent';
+import { EventType } from '@/types/event';
 
 const IngPage = () => {
   const router = useRouter();
+  const { data, isSuccess, error } = useGetEvents()
   return (
     <div className="w-full h-screen items-center`">
       <Header />
       <div className="flex flex-col w-full px-5 gap-3 items-center">
-        {mockEventData.data.map((element) => (
+        {data?.data.map((element: EventType) => (
           <EventCard {...element} />
         ))}
       </div>
