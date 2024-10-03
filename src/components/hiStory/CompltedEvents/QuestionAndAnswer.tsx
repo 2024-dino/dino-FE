@@ -8,6 +8,7 @@ import BookmarkIcon from '@/assets/icon/BookmarkIcon';
 import ChevronRightIcon from '@/assets/icon/ChevronRightIcon.svg';
 import { EmotionType } from '@/types/emotion';
 import Image from 'next/image';
+import Loading from '@/components/Loading';
 import { QuestionContentType } from '@/types/question';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
 import moment from 'moment';
@@ -124,6 +125,8 @@ const QuestionAndAnswer = ({
         return <p className="leading-[24px]">{question.myAnswer}</p>;
     }
   };
+
+  if (isSetBookmarkPending || isDeleteBookmarkPending) return <Loading />;
 
   return (
     <div className="w-[calc(100%-40px)] mx-auto">
