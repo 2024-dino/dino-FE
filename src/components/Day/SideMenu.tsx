@@ -12,6 +12,7 @@ interface SlideMenuProps {
 const SlideMenu = ({ isOpen, setIsOpen }: SlideMenuProps) => {
   const [userName, setUserName] = useState<string | null>(null);
   const [onAlarm, setOnAlarm] = useState<boolean>(false);
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
