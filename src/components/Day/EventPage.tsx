@@ -94,7 +94,7 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
             router.push(
               {
                 pathname: '/daydream',
-                query: { id: data.data.eventId },
+                query: { id: eventId },
               },
               '/daydream',
             )

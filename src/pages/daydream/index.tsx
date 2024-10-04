@@ -15,7 +15,8 @@ const DayDreamPage = () => {
   const [representiveQuestion, setRepresentiveQuestion] = useState<
     QuestionType | undefined
   >(undefined);
-  console.log(id)
+  console.log(id);
+  console.log(data);
   return (
     <div
       className="flex flex-col w-full h-screen"
@@ -25,16 +26,22 @@ const DayDreamPage = () => {
         boxShadow: '0px 2px 32px 0px rgba(136, 136, 136, 0.12)',
       }}
     >
-      <div className='w-calc[100%-40px]'>
+      <div className="w-calc[100%-40px]">
         <Header />
         <div>
           <div>
             <div>{data?.data?.title}</div>
             <div>
-
+              {formatDate(data?.data?.startDate)} - 
+              {formatDate(data?.data?.endDate)}
             </div>
           </div>
-          <Image src={data?.data?.fileUrl} alt="growth" />
+          <Image
+            src={data?.data?.fileUrl}
+            alt="growth"
+            width={95}
+            height={95}
+          />
         </div>
         {data?.data?.questionContent.map((question: QuestionContentType) => (
           <QuestionAndAnswer question={question} />
