@@ -33,11 +33,11 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
       (question: QuestionType) =>
         question.questionDate === formatDate(currentDay),
     ) || [];
-  const isEnding = false;
-  // today == stringToDate(data?.data?.endDate) &&
-  //   questionsOfToday.every(
-  //     (question: QuestionType) => question.isAnswer === true,
-  //   );
+  const isEnding =
+    today == stringToDate(data?.data?.endDate) &&
+    questionsOfToday.every(
+      (question: QuestionType) => question.isAnswer === true,
+    );
 
   useEffect(() => {
     setCurrentDay(today);
