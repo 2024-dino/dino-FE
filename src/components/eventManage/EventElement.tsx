@@ -77,7 +77,7 @@ const EventElement = ({ children, eventId }: Props) => {
   return (
     <>
       <div className="w-[400px] overflow-hidden">
-        <div className="w-[4000px] bg-white overflow-hidden -translate-x-[100px]">
+        <div className="w-[4000px] overflow-hidden -translate-x-[100px]">
           <motion.div
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
