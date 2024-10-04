@@ -7,16 +7,21 @@ import { formatDate, stringToDate } from '../../utils/event';
 import { QuestionType } from '../../types/event';
 import QuestionAndAnswer from '@/components/hiStory/CompltedEvents/QuestionAndAnswer';
 import { QuestionContentType } from '@/types/question';
+import { selectRepresentative } from '@/api/hwj/day/question';
+import { useSelectRepresentative } from '@/hooks/api/useQuestion';
 
 const DayDreamPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const { data, isSuccess, error } = useGetEvent(Number(id));
-  const [representiveQuestion, setRepresentiveQuestion] = useState<
-    Number | undefined
-  >(undefined);
+  const [representiveQuestion, setRepresentiveQuestion] = useState<Number>(0);
+  const { mutate } = useSelectRepresentative();
   console.log(id);
   console.log(data);
+
+  const handleSubmit = () => {
+    mutate({ eventId: Number(id), questionId: representiveQuestion });
+  };
   return (
     <div
       className="flex flex-col w-full h-screen"
@@ -52,7 +57,14 @@ const DayDreamPage = () => {
           <QuestionAndAnswer question={question} />
         ))}
         <div className="fixed px-5 bottom-5 w-full">
-          <button className={`w-full py-[13px] rounded-[10px] ${!representiveQuestion ? 'bg-[#E9E9E9]' : 'bg-[#8ABADD]'}`}>선택 완료</button>
+          <button
+            onClick={() => handleSubmit}
+            className={`w-full py-[13px] rounded-[10px] ${
+              !representiveQuestion ? 'bg-[#E9E9E9]' : 'bg-[#8ABADD]'
+            }`}
+          >
+            선택 완료
+          </button>
         </div>
       </div>
     </div>
