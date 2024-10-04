@@ -1,10 +1,11 @@
 'use client';
 
 import { Dispatch, SetStateAction, useMemo, useState } from 'react';
-import { motion, PanInfo, useMotionValue } from 'framer-motion';
+import { PanInfo, motion, useMotionValue } from 'framer-motion';
+
 import DDayCounter from './Day/DDayCounter';
-import { EventType } from '../types/event';
 import { EmotionType } from '@/types/emotion';
+import { EventType } from '../types/event';
 import { getProgressAndButtonColor } from '@/utils/emotionColor';
 import { calculatePeriod, stringToDate } from '@/utils/event';
 
@@ -131,6 +132,7 @@ export default function DateChanger({
           dragElastic={0.2}
           className="flex gap-x-8 items-center justify-center mb-5"
         >
+          {/* {dateArr.length === 0 && <div>dd</div>} */}
           {dateArr.map((day) => (
             <motion.div
               style={

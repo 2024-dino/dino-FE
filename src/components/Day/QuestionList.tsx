@@ -1,7 +1,9 @@
-import { QuestionType } from '@/types/event';
 import React, { Dispatch, ReactElement, SetStateAction } from 'react';
-import { WaveformForPlay } from './Waveform';
+
 import Image from 'next/image';
+import QuestionAndAnswer from '../hiStory/CompltedEvents/QuestionAndAnswer';
+import { QuestionType } from '@/types/event';
+import { WaveformForPlay } from './Waveform';
 
 interface EventCardProps {
   children: ReactElement;
@@ -27,9 +29,21 @@ const QuestionList = ({
   };
   return (
     <div className="max-h-120 overflow-scroll">
-      {!isToday ? (
-        questionList.length > 0 ? (
-          <div>
+      {questionList.map((question) =>
+        question.isAnswer ? (
+          <div className="flex text-left">
+            <QuestionAndAnswer
+              question={question}
+              isAvailBookmark={true}
+              title="isMainPage"
+            />
+          </div>
+        ) : (
+          <div
+            key={question.content}
+            className=""
+            onClick={() => handleQuestionClick(question)}
+          >
             <EventCard>
               <div className="flex gap-2 px-3 py-4 w-full rounded-[10px] shadow-[0_2px_16px_rgba(68,68,68,0.12)] break-keep">
                 <p className="text-[#BAD7EC] font-['edensor'] text-2xl leading-[20px] tracking-[-1px] flex justify-start">
