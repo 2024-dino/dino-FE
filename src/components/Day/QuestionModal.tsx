@@ -1,11 +1,12 @@
+import { MediaType, MyAnswer } from '@/types/answerType';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import AudioRecord from './AudioRecord';
 import CameraModalPro from './CameraModalPro';
-import { QuestionType } from '@/types/event';
-import { MediaType, MyAnswer } from '@/types/answerType';
-import { usePostAnswer } from '@/hooks/api/useQuestion';
 import ConfirmModal from '../common/ConfirmModal';
+import { QuestionType } from '@/types/event';
+import { usePostAnswer } from '@/hooks/api/useQuestion';
+
 interface QuestionModalProps {
   selectedQuestion: QuestionType | undefined;
   onClose: Dispatch<SetStateAction<QuestionType | undefined>>;
