@@ -33,11 +33,11 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
       (question: QuestionType) =>
         question.questionDate === formatDate(currentDay),
     ) || [];
-  const isEnding =
-    today == stringToDate(data?.data?.endDate) &&
-    questionsOfToday.every(
-      (question: QuestionType) => question.isAnswer === true,
-    );
+  const isEnding = true
+   //today == stringToDate(data?.data?.endDate) &&
+   // questionsOfToday.every(
+   //   (question: QuestionType) => question.isAnswer === true,
+   // );
 
   useEffect(() => {
     setCurrentDay(today);
@@ -90,7 +90,15 @@ const EventPage = ({ eventId, setStep }: FunnelDispenserProps) => {
           keyword={data.data.title}
           period={calculatePeriod(data.data.startDate, data.data.endDate)}
           imgUrl={data.data.fileUrl}
-          onConfirm={() => router.push('/daydream')}
+          onConfirm={() =>
+            router.push(
+              {
+                pathname: '/daydream',
+                query: { id: data.data.eventId },
+              },
+              '/daydream',
+            )
+          }
         />
       )}
     </>
